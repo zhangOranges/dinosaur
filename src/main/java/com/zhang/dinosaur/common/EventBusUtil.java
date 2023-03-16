@@ -2,6 +2,9 @@ package com.zhang.dinosaur.common;
 
 import com.google.common.eventbus.EventBus;
 
+/**
+ * 事件驱动工具类
+ */
 public class EventBusUtil {
     private static EventBus eventBus = new EventBus();
     private void EventUtil(){}
