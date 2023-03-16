@@ -1,22 +1,16 @@
 package com.zhang.dinosaur.controller;
 
 import cn.hutool.core.codec.Base64;
-import cn.hutool.core.io.FileTypeUtil;
-import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("base64")
@@ -41,6 +35,7 @@ public class Base64Controller {
             }
             byte[] img = Base64.decode(base64.getBytes());
             response.setHeader("content-type","image/png");
+            response.setHeader("sj", LocalDateTime.now().toString());
             outputStream.write(img);
             outputStream.flush();
         }catch (Exception e){
