@@ -1,7 +1,5 @@
 package com.zhang.dinosaur.controller;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.common.EventBusUtil;
 import com.zhang.dinosaur.event.AddCountEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +13,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping
 @Slf4j
 public class DinosaurController {
-
-    public DinosaurController() {
-        EventBusUtil.register(this);
-    }
 
     private String[] hello = {"你好","hello","مرحبا","Witam","Здравейте","Hallo",""};
 
@@ -38,15 +32,10 @@ public class DinosaurController {
     @GetMapping("sayAnyHello")
     public String sayAnyHello(){
         log.info("post event");
-        EventBusUtil.post(new AddCountEvent());
+        EventBusUtil.post(new AddCountEvent(count));
         int i = count.intValue() % hello.length;
         return hello[i];
     }
 
-    //cqrs
-    @Subscribe
-    public void addCount(AddCountEvent event){
-        log.info("event come on");
-        count.addAndGet(1);
-    }
+
 }
