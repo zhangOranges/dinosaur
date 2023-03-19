@@ -1,1 +1,2 @@
 1/ add docker + docker-compose env + redis + mysql8 + nginx
+2/ learn the use of iptables
