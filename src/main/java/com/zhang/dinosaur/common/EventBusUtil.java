@@ -3,14 +3,14 @@ package com.zhang.dinosaur.common;
 import com.google.common.eventbus.EventBus;
 
 /**
- * 事件驱动工具类
+ * 事件驱动工具类 event drive tools
  */
 public class EventBusUtil {
     private static EventBus eventBus = new EventBus();
     private void EventUtil(){}
 
     /**
-     * 注册对象
+     * register object
      * @param o
      */
     public static void register(Object o){
@@ -18,7 +18,7 @@ public class EventBusUtil {
     }
 
     /**
-     * 发送事件
+     * post event
      * @param o
      */
     public static void post(Object o){

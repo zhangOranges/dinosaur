@@ -21,7 +21,7 @@ public class DinosaurController {
 
 
     /**
-     * 首页 欢迎语
+     * index hello
      * @return
      */
     @GetMapping("index")

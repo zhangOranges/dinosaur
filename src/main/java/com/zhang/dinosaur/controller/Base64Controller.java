@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Base64Controller {
 
     /**
-     * base64转图片
+     * base64 to img
      * @param base64
      * @param response
      */
@@ -29,7 +29,7 @@ public class Base64Controller {
             response.setHeader("content-type","text/html");
             outputStream = response.getOutputStream();
             if (StrUtil.isBlank(base64)){
-                outputStream.write("base64参数不能为空".getBytes());
+                outputStream.write("base64 param not null".getBytes());
                 outputStream.flush();
                 return;
             }
@@ -42,7 +42,7 @@ public class Base64Controller {
             log.error("{}",e);
             if (outputStream != null){
                 try {
-                    outputStream.write("toImg方法异常".getBytes());
+                    outputStream.write("toImg function exception".getBytes());
                     outputStream.flush();
                 }catch (IOException e1){
                     log.error("{}",e1);

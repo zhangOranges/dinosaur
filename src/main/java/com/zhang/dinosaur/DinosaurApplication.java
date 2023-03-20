@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class DinosaurApplication {
-    /** 恐龙吼
+    /**
      * Dinosaur roar
      * @param args
      */

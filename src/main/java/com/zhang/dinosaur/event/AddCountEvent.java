@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * addCount事件
+ * addCount event
  */
 @Data
 public class AddCountEvent {

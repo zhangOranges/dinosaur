@@ -4,7 +4,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 /**
- * 实现网络打印 继承PrintStream类来做
+ * implements net print extend PrintStream  do it
  */
 public class NetPrintStream extends PrintStream {
     public NetPrintStream(OutputStream out) {

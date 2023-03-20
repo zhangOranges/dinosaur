@@ -23,7 +23,7 @@ import java.io.PrintStream;
 public class BannerController {
 
     /**
-     * 图片转ascii
+     * img to scii
      * @param file
      * @param response
      */
