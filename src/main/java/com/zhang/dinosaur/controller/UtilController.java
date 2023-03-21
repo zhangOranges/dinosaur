@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.BitSet;
 
+/**
+ * utility class
+ */
 @RestController
 @RequestMapping("util")
 @Slf4j
