@@ -13,7 +13,7 @@ public class ListenerConfig {
         EventBusUtil.register(this);
     }
 
-    //cqrs
+    //cqrs command Query responsibility segregation
     @Subscribe
     public void addCount(AddCountEvent event){
         log.info("event come on");
