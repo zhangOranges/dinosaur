@@ -6,6 +6,8 @@ import com.zhang.dinosaur.WeatherListener;
 import com.zhang.dinosaur.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  *  event drive tools
  */
@@ -13,11 +15,8 @@ import org.springframework.stereotype.Component;
 public class EventBusUtil {
     private static EventBus eventBus = new EventBus();
     private EventBusUtil(){
-        String[] names = SpringUtil.getBeanNamesForType(EventListener.class);
-        for (String name : names) {
-            EventListener o = SpringUtil.getBean(name);
-            eventBus.register(o);
-        }
+        Map<String, EventListener> beansOfType = SpringUtil.getBeansOfType(EventListener.class);
+        beansOfType.entrySet().forEach(event->eventBus.register(event));
     }
 
     /**
