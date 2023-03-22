@@ -3,6 +3,7 @@ package com.zhang.dinosaur.common;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.eventbus.EventBus;
 import com.zhang.dinosaur.WeatherListener;
+import com.zhang.dinosaur.event.EventListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,19 +13,11 @@ import org.springframework.stereotype.Component;
 public class EventBusUtil {
     private static EventBus eventBus = new EventBus();
     private EventBusUtil(){
-        String[] names = SpringUtil.getBeanNamesForType(WeatherListener.class);
+        String[] names = SpringUtil.getBeanNamesForType(EventListener.class);
         for (String name : names) {
-            WeatherListener o = SpringUtil.getBean(name);
+            EventListener o = SpringUtil.getBean(name);
             eventBus.register(o);
         }
-    }
-
-    /**
-     * register object
-     * @param o
-     */
-    public void register(Object o){
-        eventBus.register(o);
     }
 
     /**

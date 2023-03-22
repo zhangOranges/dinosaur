@@ -1,4 +1,6 @@
 package com.zhang.dinosaur;
 
-public interface WeatherListener {
+import com.zhang.dinosaur.event.EventListener;
+
+public interface WeatherListener extends EventListener {
 }
