@@ -25,8 +25,8 @@ public class Dinosaur implements Animal, WeatherListener {
     }
 
     @Override
-    public void action() {
-        log.info("Dinosaur action");
+    public void action(Env env) {
+        log.info("Dinosaur action  time = {}",env.getNow());
         eat();
         roar();
     }

@@ -11,7 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
-@Component
 public class Earth extends Env{
     private List<Animal> animals = new ArrayList<>();
     @Override
@@ -26,14 +25,9 @@ public class Earth extends Env{
 
     @Override
     public void doSomeThing() {
-        for (;;) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            animals.forEach(Animal::action);
-        }
+        animals.forEach(e->{
+            e.action(this);
+        });
     }
 
     @Override

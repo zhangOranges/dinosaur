@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.config;
 
+import com.zhang.dinosaur.domain.ConfigEarthEnv;
 import com.zhang.dinosaur.domain.Env;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -12,8 +13,8 @@ public class StartListener implements ApplicationRunner {
     private Env env;
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        env.init();
-//        env.doSomeThing();
-//        env.destroy();
+        env.init();
+        env.doSomeThing();
+        env.destroy();
     }
 }
