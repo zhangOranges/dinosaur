@@ -3,7 +3,6 @@ package com.zhang.dinosaur.common;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.eventbus.EventBus;
 import com.zhang.dinosaur.WeatherListener;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
