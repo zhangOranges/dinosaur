@@ -3,14 +3,14 @@ package com.zhang.dinosaur.common;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.eventbus.EventBus;
 import com.zhang.dinosaur.listener.EnvEventListener;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
 /**
  *  event drive tools
  */
-@Component
+@Configuration
 public class EventBusUtil {
     private static EventBus eventBus = new EventBus();
     private EventBusUtil(){
