@@ -1,4 +1,7 @@
 package com.zhang.dinosaur.event;
 
-public interface WeatherEvent {
+/**
+ * Represents a specific weather event in the environment
+ */
+public interface WeatherEvent extends EnvEvent{
 }

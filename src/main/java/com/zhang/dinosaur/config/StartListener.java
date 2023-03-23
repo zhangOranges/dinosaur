@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.config;
 
-import com.zhang.dinosaur.domain.ConfigEarthEnv;
 import com.zhang.dinosaur.domain.Env;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

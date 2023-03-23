@@ -2,7 +2,7 @@ package com.zhang.dinosaur.common;
 
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.eventbus.EventBus;
-import com.zhang.dinosaur.event.EventListener;
+import com.zhang.dinosaur.listener.EnvEventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -14,8 +14,8 @@ import java.util.Map;
 public class EventBusUtil {
     private static EventBus eventBus = new EventBus();
     private EventBusUtil(){
-        Map<String, EventListener> beansOfType = SpringUtil.getBeansOfType(EventListener.class);
-        beansOfType.entrySet().forEach(event->eventBus.register(event));
+        Map<String, EnvEventListener> beansOfType = SpringUtil.getBeansOfType(EnvEventListener.class);
+        beansOfType.values().forEach(event->eventBus.register(event));
     }
 
     /**

@@ -1,9 +1,9 @@
 package com.zhang.dinosaur.domain;
 
-import com.google.common.eventbus.Subscribe;
-import com.zhang.dinosaur.WeatherListener;
-import com.zhang.dinosaur.event.WeatherEvent;
-import com.zhang.dinosaur.event.WindEvent;
+import com.zhang.dinosaur.WeatherListenerEnv;
+import com.zhang.dinosaur.event.EnvEvent;
+import com.zhang.dinosaur.event.SubEvnEvent;
+import com.zhang.dinosaur.listener.EnvEventListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class Dinosaur implements Animal, WeatherListener {
+public class Dinosaur implements Animal, EnvEventListener, SubEvnEvent {
     @Override
     public Animal born() {
         log.info("Dinosaur born");
@@ -37,9 +37,9 @@ public class Dinosaur implements Animal, WeatherListener {
     private void roar(){
         log.info("roar action");
     }
-    @Subscribe
-    public void wind(WindEvent windEvent){
-        log.info("weatherEvent action = {}",windEvent.getClass());
-        log.info("Dinosaur action = {}","Hide in the house");
+
+    @Override
+    public void sub(EnvEvent envEvent) {
+        log.info("env Event = {} ",envEvent.getClass());
     }
 }
