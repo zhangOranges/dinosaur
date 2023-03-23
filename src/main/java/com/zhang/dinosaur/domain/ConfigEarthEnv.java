@@ -5,13 +5,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Component
-public class ConfigEarthEnv extends Earth implements ConfigEnv{
-
-    private LocalDateTime now;
-    @Override
-    public void setNow(LocalDateTime now) {
-        this.now = now;
-    }
+public class ConfigEarthEnv extends Earth{
 
     @Override
     public void doSomeThing() {
@@ -21,8 +15,12 @@ public class ConfigEarthEnv extends Earth implements ConfigEnv{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            setNow(LocalDateTime.now());
             super.doSomeThing();
         }
+    }
+
+    @Override
+    public LocalDateTime getNow() {
+        return LocalDateTime.now();
     }
 }

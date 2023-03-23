@@ -17,7 +17,8 @@ public class Earth extends Env{
         String[] names = SpringUtil.getBeanNamesForType(Animal.class);
         for (String name : names) {
             Animal animal = SpringUtil.getBean(name);
-            animals.add(animal.born());
+            animal.born();
+            animals.add(animal);
         }
     }
 

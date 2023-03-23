@@ -4,7 +4,8 @@ package com.zhang.dinosaur.domain;
  * Represents organisms in the environment
  */
 public interface Animal {
-    Animal born();
+    void born();
     void death();
     void action(Env env);
+    void instinct();
 }
