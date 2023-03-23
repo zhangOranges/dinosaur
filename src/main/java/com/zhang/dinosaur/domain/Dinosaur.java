@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.domain;
 
-import com.zhang.dinosaur.WeatherListenerEnv;
 import com.zhang.dinosaur.event.EnvEvent;
 import com.zhang.dinosaur.event.SubEvnEvent;
 import com.zhang.dinosaur.listener.EnvEventListener;

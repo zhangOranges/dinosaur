@@ -1,4 +1,4 @@
-package com.zhang.dinosaur;
+package com.zhang.dinosaur.event;
 
 import com.zhang.dinosaur.listener.EnvEventListener;
 
