@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Map;
 
 /**
- *  event drive tools
+ *  event drive tools   call->print@plt  -> jmp print@got.plt -> ld-linux-x86-64.so.2 load print@plt -> set print@got.plt -> print@plt
  */
 @Configuration
 public class EventBusUtil {
