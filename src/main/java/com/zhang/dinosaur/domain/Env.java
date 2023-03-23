@@ -8,14 +8,5 @@ import java.time.LocalDateTime;
  */
 public abstract class Env {
 
-    //Fields
-    protected LocalDateTime now;
-    //Methods
-    public abstract void init();
-    public abstract void doSomeThing();
-    public abstract void destroy();
-
-    public LocalDateTime getNow() {
-        return now;
-    }
+    public abstract LocalDateTime getNow() ;
 }

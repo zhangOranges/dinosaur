@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Component
 public class ConfigEarthEnv extends Earth implements ConfigEnv{
 
+    private LocalDateTime now;
     @Override
     public void setNow(LocalDateTime now) {
         this.now = now;
