@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.domain;
 
-import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.event.*;
 import com.zhang.dinosaur.listener.EnvEventListener;
 import lombok.extern.slf4j.Slf4j;
