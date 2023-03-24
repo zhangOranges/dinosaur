@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class Dinosaur implements Animal, EnvEventListener, SubEvnEvent {
+    /**
+     * current dinosaur hold this environmentEvent
+     */
     private EnvEvent envEvent;
     @Override
     public void born() {
