@@ -63,7 +63,6 @@ public class Dinosaur implements Animal, EnvEventListener, SubEvnEvent {
     }
 
     @Override
-    @Subscribe
     public void sub(EnvEvent envEvent) {
         this.envEvent = envEvent;
         log.info("env Event = {} ",envEvent.getClass());
