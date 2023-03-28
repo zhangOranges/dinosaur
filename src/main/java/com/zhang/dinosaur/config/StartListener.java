@@ -14,6 +14,6 @@ public class StartListener implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         env.init();
         env.doSomeThing();
-        env.destroy();
+//        env.destroy();
     }
 }

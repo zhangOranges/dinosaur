@@ -49,4 +49,14 @@ public class DinosaurController {
         eventBusUtil.post(new WindEvent());
         return "wind ok";
     }
+
+    /**
+     * 返回thread id
+     * @return
+     */
+    @GetMapping("threadId")
+    public String threadId(){
+
+        return Thread.currentThread().getId()+"";
+    }
 }

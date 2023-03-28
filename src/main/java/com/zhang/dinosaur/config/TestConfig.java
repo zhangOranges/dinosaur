@@ -8,14 +8,13 @@ import org.springframework.context.annotation.Configuration;
 @RefreshScope
 public class TestConfig {
 
-    private int port;
+    private String name;
 
-    public int getPort() {
-        return port;
+    public String getName() {
+        return name;
     }
-
-    @Value("${server.port:8888}")
-    public void setPort(int port) {
-        this.port = port;
+    @Value("${names:zhang}")
+    public void setName(String name) {
+        this.name = name;
     }
 }

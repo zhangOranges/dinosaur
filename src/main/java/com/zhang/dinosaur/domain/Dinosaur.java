@@ -1,8 +1,10 @@
 package com.zhang.dinosaur.domain;
 
+import com.zhang.dinosaur.config.TestConfig;
 import com.zhang.dinosaur.event.*;
 import com.zhang.dinosaur.listener.EnvEventListener;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +17,8 @@ public class Dinosaur implements Animal, EnvEventListener, SubEvnEvent {
      * current dinosaur hold this environmentEvent
      */
     private EnvEvent envEvent;
+    @Autowired
+    private TestConfig testConfig;
     @Override
     public void born() {
         log.info("Dinosaur born");
@@ -27,7 +31,7 @@ public class Dinosaur implements Animal, EnvEventListener, SubEvnEvent {
 
     @Override
     public void action(Env env) {
-        log.info("Dinosaur action  time = {} this = {}",env.getNow(),this.toString());
+        log.info("Dinosaur action  time = {} name = {}",env.getNow(),testConfig.getName());
         if ( envEvent != null){
            envEvent.fire(this);
         }else{
