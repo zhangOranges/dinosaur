@@ -8,6 +8,8 @@ import com.zhang.dinosaur.event.WindEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.scope.GenericScope;
+import org.springframework.cloud.context.scope.refresh.RefreshScopeRefreshedEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,13 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping
 @Slf4j
-public class DinosaurController {
+public class DinosaurController implements ApplicationListener<RefreshScopeRefreshedEvent> {
 
 
     @Autowired
@@ -30,6 +33,7 @@ public class DinosaurController {
 
     private AtomicLong count = new AtomicLong(0);
 
+    private AtomicBoolean aBoolean = new AtomicBoolean(false);
     @Autowired
     private TestConfig testConfig;
 
@@ -69,15 +73,20 @@ public class DinosaurController {
         return Thread.currentThread().getId()+"";
     }
 
-    @GetMapping("resetSession")
-    public String resetSession(){
-        RequestContextHolder.currentRequestAttributes().setAttribute(GenericScope.SCOPED_TARGET_PREFIX+"testConfig",null, RequestAttributes.SCOPE_SESSION);
-        return "0k";
-    }
     @GetMapping("getEnv")
     public String getEnv(){
+        boolean b = aBoolean.get();
+        if (b){
+            RequestContextHolder.currentRequestAttributes().setAttribute(GenericScope.SCOPED_TARGET_PREFIX+"testConfig",null, RequestAttributes.SCOPE_SESSION);
+            aBoolean.compareAndSet(true,false);
+        }
         String name = testConfig.getName();
         System.out.println(name);
         return "0k";
+    }
+
+    @Override
+    public void onApplicationEvent(RefreshScopeRefreshedEvent event) {
+        aBoolean.compareAndSet(false,true);
     }
 }
