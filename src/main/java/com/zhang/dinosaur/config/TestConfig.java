@@ -1,17 +1,25 @@
 package com.zhang.dinosaur.config;
 
+import com.zhang.dinosaur.domain.Animal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-@Configuration
-@RefreshScope
+import java.util.ArrayList;
+import java.util.List;
+
+@Configuration(proxyBeanMethods = false)
+//@RefreshScope
 public class TestConfig implements EnvironmentAware {
 
     private Environment environment;
     private String name;
+
+    @Autowired
+    private List<Animal> animalList = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -28,5 +36,8 @@ public class TestConfig implements EnvironmentAware {
 
     public Environment getEnvironment() {
         return environment;
+    }
+    public List<Animal> getAnimalList() {
+        return animalList;
     }
 }

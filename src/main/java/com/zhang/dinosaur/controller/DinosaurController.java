@@ -2,6 +2,7 @@ package com.zhang.dinosaur.controller;
 
 import com.zhang.dinosaur.common.EventBusUtil;
 import com.zhang.dinosaur.config.TestConfig;
+import com.zhang.dinosaur.domain.Animal;
 import com.zhang.dinosaur.event.WeatherEvent;
 import com.zhang.dinosaur.event.WindEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -66,9 +68,8 @@ public class DinosaurController {
 
     @GetMapping("getEnv")
     public String getEnv(){
-        Environment environment = testConfig.getEnvironment();
-        String property = environment.getProperty("spring.cloud.nacos.config.server-addr");
-        System.out.println(property);
+        List<Animal> animalList = testConfig.getAnimalList();
+        System.out.println(animalList);
         return "0k";
     }
 }
