@@ -7,10 +7,13 @@ import com.zhang.dinosaur.event.WeatherEvent;
 import com.zhang.dinosaur.event.WindEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.scope.GenericScope;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -66,10 +69,15 @@ public class DinosaurController {
         return Thread.currentThread().getId()+"";
     }
 
+    @GetMapping("resetSession")
+    public String resetSession(){
+        RequestContextHolder.currentRequestAttributes().setAttribute(GenericScope.SCOPED_TARGET_PREFIX+"testConfig",null, RequestAttributes.SCOPE_SESSION);
+        return "0k";
+    }
     @GetMapping("getEnv")
     public String getEnv(){
-        List<Animal> animalList = testConfig.getAnimalList();
-        System.out.println(animalList);
+        String name = testConfig.getName();
+        System.out.println(name);
         return "0k";
     }
 }
