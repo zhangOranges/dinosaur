@@ -21,7 +21,7 @@ public class DinosaurApplication {
      * @param args
      */
     public static void main(String[] args) {
-        System.setProperty(PropertyUtils.BOOTSTRAP_ENABLED_PROPERTY,"true");
+//        System.setProperty(PropertyUtils.BOOTSTRAP_ENABLED_PROPERTY,"true");
         SpringApplication.run(DinosaurApplication.class, args);
     }
 

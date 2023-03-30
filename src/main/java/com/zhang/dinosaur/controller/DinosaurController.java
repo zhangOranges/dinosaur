@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
@@ -80,8 +85,16 @@ public class DinosaurController implements ApplicationListener<RefreshScopeRefre
             RequestContextHolder.currentRequestAttributes().setAttribute(GenericScope.SCOPED_TARGET_PREFIX+"testConfig",null, RequestAttributes.SCOPE_SESSION);
             aBoolean.compareAndSet(true,false);
         }
-        String name = testConfig.getName();
-        System.out.println(name);
+        try {
+            PropertyDescriptor[] propertyDescriptors = Introspector.getBeanInfo(TestConfig.class).getPropertyDescriptors();
+            for (PropertyDescriptor pd : propertyDescriptors) {
+                Method method = pd.getWriteMethod();
+                if (method!=null)
+                System.out.println(method.getName());
+            }
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
         return "0k";
     }
 
