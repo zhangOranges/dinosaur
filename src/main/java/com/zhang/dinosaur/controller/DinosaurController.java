@@ -88,6 +88,10 @@ public class DinosaurController implements ApplicationListener<RefreshScopeRefre
         try {
             PropertyDescriptor[] propertyDescriptors = Introspector.getBeanInfo(TestConfig.class).getPropertyDescriptors();
             for (PropertyDescriptor pd : propertyDescriptors) {
+                Class<?> propertyType = pd.getPropertyType();
+                if (!propertyType.getName().equals(String.class.getName())){
+                    continue;
+                }
                 Method method = pd.getWriteMethod();
                 if (method!=null)
                 System.out.println(method.getName());
