@@ -111,20 +111,15 @@ public class DinosaurController implements ApplicationListener<RefreshScopeRefre
 
     @GetMapping("redisTest")
     public void redisTest(){
-        String key = "one";
-        Boolean lock = redisUtilPro.lock(key);
-        if (!Boolean.TRUE.equals(lock)){
-            log.error("shibai   suo  yibei  huoqu");
-            return;
-        }
 
+        Boolean one = redisUtilPro.lock("one");
         try {
-            Thread.sleep(30000);
+            Thread.sleep(31000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        redisUtilPro.unlock(key);
+        System.out.println(one);
+        redisUtilPro.unlock("one");
 
     }
 

@@ -2,6 +2,7 @@ package com.zhang.dinosaur.common;
 
 import cn.hutool.core.thread.NamedThreadFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -17,10 +18,11 @@ public class RedisUtilPro {
     /**
      * redis ttl time 和 renew time
      */
-    private long timeout = 30;
+    private long timeout = 10;
     private  static ScheduledExecutorService watchDog = Executors.newScheduledThreadPool(8, new NamedThreadFactory("watchDog", false));
     private static Map<Object,ScheduledFuture> map = new ConcurrentHashMap<>();
-    @Resource(name = "stringRedisTemplate")
+//    @Resource(name = "stringRedisTemplate")
+    @Autowired
     private RedisTemplate redisTemplate;
 
     public Boolean setIfAbsent(Object key, Object value, long timeout, TimeUnit unit){
