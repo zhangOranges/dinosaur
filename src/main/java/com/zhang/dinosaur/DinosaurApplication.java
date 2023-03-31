@@ -1,7 +1,6 @@
 package com.zhang.dinosaur;
 
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -15,6 +14,7 @@ import java.util.Map;
  * endpoint
  */
 @SpringBootApplication
+@Slf4j
 public class DinosaurApplication {
     /**
      * Dinosaur roar
@@ -23,6 +23,7 @@ public class DinosaurApplication {
     public static void main(String[] args) {
 //        System.setProperty(PropertyUtils.BOOTSTRAP_ENABLED_PROPERTY,"true");
         SpringApplication.run(DinosaurApplication.class, args);
+
     }
 
 

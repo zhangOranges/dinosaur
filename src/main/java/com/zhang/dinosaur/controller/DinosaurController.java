@@ -1,16 +1,14 @@
 package com.zhang.dinosaur.controller;
 
 import com.zhang.dinosaur.common.EventBusUtil;
+import com.zhang.dinosaur.common.RedisUtilPro;
 import com.zhang.dinosaur.config.TestConfig;
-import com.zhang.dinosaur.domain.Animal;
-import com.zhang.dinosaur.event.WeatherEvent;
 import com.zhang.dinosaur.event.WindEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.scope.GenericScope;
 import org.springframework.cloud.context.scope.refresh.RefreshScopeRefreshedEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +18,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -31,6 +27,9 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 public class DinosaurController implements ApplicationListener<RefreshScopeRefreshedEvent> {
 
+
+    @Autowired
+    private RedisUtilPro redisUtilPro;
 
     @Autowired
     private EventBusUtil eventBusUtil;
@@ -106,4 +105,34 @@ public class DinosaurController implements ApplicationListener<RefreshScopeRefre
     public void onApplicationEvent(RefreshScopeRefreshedEvent event) {
         aBoolean.compareAndSet(false,true);
     }
+
+
+
+
+    @GetMapping("redisTest")
+    public void redisTest(){
+        String key = "one";
+        Boolean lock = redisUtilPro.lock(key);
+        if (!Boolean.TRUE.equals(lock)){
+            log.error("shibai   suo  yibei  huoqu");
+            return;
+        }
+
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        redisUtilPro.unlock(key);
+
+    }
+
+
+
+
+
+
+
+
 }
