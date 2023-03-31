@@ -14,6 +14,10 @@ import java.util.concurrent.*;
 @Configuration
 @Slf4j
 public class RedisUtilPro {
+    /**
+     * redis ttl time 和 renew time
+     */
+    private long timeout = 30;
     private  static ScheduledExecutorService watchDog = Executors.newScheduledThreadPool(8, new NamedThreadFactory("watchDog", false));
     private static Map<Object,ScheduledFuture> map = new ConcurrentHashMap<>();
     @Resource(name = "stringRedisTemplate")
@@ -45,13 +49,13 @@ public class RedisUtilPro {
     }
 
     public Boolean lock(Object key){
-        Boolean flag = setIfAbsent(key, LocalDateTime.now().toString(),30,TimeUnit.SECONDS);
+        Boolean flag = setIfAbsent(key, LocalDateTime.now().toString(),timeout,TimeUnit.SECONDS);
         if (!flag){
             log.debug("lock is other used!");
             return flag;
         }
         log.debug("添加watchdog key = {}",key);
-        ScheduledFuture<?> scheduledFuture = watchDog.scheduleAtFixedRate(new WatchDog( this, key), 29, 30, TimeUnit.SECONDS);
+        ScheduledFuture<?> scheduledFuture = watchDog.scheduleAtFixedRate(new WatchDog( this, key), timeout-1, timeout, TimeUnit.SECONDS);
         map.put(key,scheduledFuture);
         return flag;
     }
