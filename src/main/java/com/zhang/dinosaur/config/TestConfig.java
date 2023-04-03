@@ -22,7 +22,6 @@ import java.util.List;
 public class TestConfig {
 
     private String name;
-    private ApplicationContext ac;
 
 
     public String getName() {
