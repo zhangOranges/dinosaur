@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -72,7 +73,7 @@ public class DinosaurController implements ApplicationListener<RefreshScopeRefre
      * @return
      */
     @GetMapping("threadId")
-    public String threadId(){
+    public String threadId(HttpServletRequest request){
 
         return Thread.currentThread().getId()+"";
     }
