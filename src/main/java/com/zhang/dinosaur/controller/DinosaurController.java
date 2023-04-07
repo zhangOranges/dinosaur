@@ -53,11 +53,16 @@ public class DinosaurController implements ApplicationListener<RefreshScopeRefre
 
     @GetMapping("sayAnyHello")
     public String sayAnyHello(){
+        return testConfig.getName();
+//        return say();
+    }
+
+
+    public String say(){
         count.getAndAdd(1);
         int i = count.intValue() % hello.length;
         return hello[i];
     }
-
     /**
      * play wind
      * @return

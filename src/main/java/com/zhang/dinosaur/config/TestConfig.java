@@ -4,6 +4,9 @@ import com.zhang.dinosaur.domain.Animal;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.endpoint.event.RefreshEvent;
 import org.springframework.context.ApplicationContext;
@@ -16,20 +19,16 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Configuration(proxyBeanMethods = false)
-@SessionScope
 public class TestConfig {
 
-    private String name;
+    AtomicLong atomicLong = new AtomicLong(0);
 
-
+//    @Cacheable
     public String getName() {
-        return name;
-    }
-    @Value("${names:zhang}")
-    public void setName(String name) {
-        this.name = name;
+        return atomicLong.addAndGet(1)+"";
     }
 
 }
