@@ -14,16 +14,14 @@ public class MainFunc {
                 ex.printStackTrace();
             }
 
-            //加载
-            LoadingFrame loadingFrame = new LoadingFrame();
-            loadingFrame.setVisible(false);
-
-            MainFrame mainFrame = new MainFrame();
-            new TipFrame();
-
-
-
-
+            //加载配置相关
+            new LoadingFrame();
+            //加载主界面
+            new MainFrame();
+            //加载小提示
+            if (GContext.isShowTip()) {
+                new TipFrame();
+            }
         });
     }
 }

@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.game;
 
-import com.zhang.dinosaur.common.ThreadUtils;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -19,9 +18,16 @@ public class LoadingFrame extends JFrame {
         setContentPane(panel);
         setSize(400, 200);
         setLocationRelativeTo(null);
-
         setVisible(true);
 
-        ThreadUtils.sleep(2000);
+
+        {
+            //后期处理这里加载配置信息
+            GContext.loadConfig();
+        }
+
+
+
+        setVisible(false);
     }
 }
