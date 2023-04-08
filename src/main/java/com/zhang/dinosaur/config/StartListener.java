@@ -4,9 +4,8 @@ import com.zhang.dinosaur.domain.Earth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration(proxyBeanMethods = false)
+//@Configuration(proxyBeanMethods = false)
 public class StartListener implements ApplicationRunner {
     @Autowired
     private Earth env;
