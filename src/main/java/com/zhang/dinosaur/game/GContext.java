@@ -20,6 +20,6 @@ public class GContext {
 
 
     public static void loadConfig(){
-        ThreadUtils.sleep(2000);
+        ThreadUtils.sleep(100);
     }
 }
