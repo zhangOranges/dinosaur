@@ -1,5 +1,8 @@
 package com.zhang.dinosaur.game;
 
+import com.zhang.dinosaur.game.cs.jpanel.MainLeftPanel;
+import com.zhang.dinosaur.game.cs.jpanel.MainPanel;
+import com.zhang.dinosaur.game.cs.jpanel.TopPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -11,7 +14,13 @@ import java.awt.event.WindowEvent;
  * 主界面
  */
 public class MainFrame extends JFrame {
+    private JPanel contentPanel = new JPanel(new MigLayout("flowx,fill", "[c,grow 15,fill][c,grow 85,fill]", ""));
+    private JPanel mainLeftPanel;
+    private JPanel mainRightPanel = new JPanel(new MigLayout("flowy,fill","","[c,grow 2,fill][c,grow 73,fill][c,grow 25,fill]"));
+    private JPanel mainPanel;
+    private JTabbedPane southTabPane = new JTabbedPane();
 
+    private JPanel topPanel = new TopPanel();
     public MainFrame(){
         super("MainFrame view");
         {
@@ -24,21 +33,47 @@ public class MainFrame extends JFrame {
                     }
                 }
             });
-            setResizable(false);
+//            setResizable(false);
             setSize(1000, 750);
             setLocationRelativeTo(null);
         }
-        JPanel mainPanel = new JPanel(new MigLayout("insets 30,wrap 10"));
-        mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         {
-            for (int i = 0; i < 15; i++) {
-                JLabel hello = new JLabel("hello"+i);
-                hello.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                mainPanel.add(hello);
-            }
+            mainLeftPanel = new MainLeftPanel(new MigLayout());
+            mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        }
+
+        {
+            topPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         }
-        setContentPane(mainPanel);
+
+        {
+            mainPanel = new MainPanel(new MigLayout(),"img/default_bg.png");
+            mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+
+        }
+
+        {
+            southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
+        }
+
+        {
+            mainRightPanel.add(topPanel,"grow");
+            mainRightPanel.add(mainPanel,"grow");
+            mainRightPanel.add(southTabPane,"grow");
+            mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        }
+
+        {
+            contentPanel.add(mainLeftPanel,"spany,grow");
+            contentPanel.add(mainRightPanel,"spany,grow");
+
+        }
+
+
+
+
+        setContentPane(contentPanel);
 
         setVisible(true);
     }
