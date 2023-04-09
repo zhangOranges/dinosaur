@@ -1,8 +1,6 @@
 package com.zhang.dinosaur.game;
 
-import com.zhang.dinosaur.game.cs.jpanel.MainLeftPanel;
-import com.zhang.dinosaur.game.cs.jpanel.MainPanel;
-import com.zhang.dinosaur.game.cs.jpanel.TopPanel;
+import com.zhang.dinosaur.game.cs.jpanel.*;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -14,13 +12,33 @@ import java.awt.event.WindowEvent;
  * 主界面
  */
 public class MainFrame extends JFrame {
-    private JPanel contentPanel = new JPanel(new MigLayout("flowx,fill", "[c,grow 15,fill][c,grow 85,fill]", ""));
-    private JPanel mainLeftPanel;
-    private JPanel mainRightPanel = new JPanel(new MigLayout("flowy,fill","","[c,grow 2,fill][c,grow 73,fill][c,grow 25,fill]"));
-    private JPanel mainPanel;
-    private JTabbedPane southTabPane = new JTabbedPane();
+    /**
+     * 主面板
+     * new MigLayout("", "[grow 15,fill][grow 85,fill]", "[grow,fill][grow,fill]")
+     */
+    private JPanel contentPanel = new ContentPanel(new MigLayout("", "[grow,fill]", "[grow,fill]"));
+    /**
+     * 主面板左侧
+     */
+    private JPanel mainLeftPanel = new MainLeftPanel(new MigLayout("flowx,,wrap","[grow,fill]",""));
+    /**
+     * 主面板右侧
+     */
+    private JPanel mainRightPanel = new MainRightPanel(new MigLayout("flowy,fill","","[c,grow 2,fill]0[c,grow 73,fill]0[c,grow 25,fill]"));
 
+    /**
+     * 主面板右侧的中间
+     */
+    private JPanel mainPanel = new MainPanel(new MigLayout(),"img/default_bg.png");
+    /**
+     * 主面板右侧的下边
+     */
+    private JTabbedPane southTabPane = new JTabbedPane();
+    /**
+     * 主面板右侧的上边
+     */
     private JPanel topPanel = new TopPanel();
+
     public MainFrame(){
         super("MainFrame view");
         {
@@ -37,39 +55,42 @@ public class MainFrame extends JFrame {
             setSize(1000, 750);
             setLocationRelativeTo(null);
         }
+        //用于debug
         {
-            mainLeftPanel = new MainLeftPanel(new MigLayout());
-            mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            contentPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    topPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+                    mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+                    southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
         }
 
         {
-            topPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
-
-        }
-
-        {
-            mainPanel = new MainPanel(new MigLayout(),"img/default_bg.png");
-            mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
-
-        }
-
-        {
-            southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
+          //左侧添加区域
         }
 
         {
             mainRightPanel.add(topPanel,"grow");
             mainRightPanel.add(mainPanel,"grow");
             mainRightPanel.add(southTabPane,"grow");
-            mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
 
         {
-            contentPanel.add(mainLeftPanel,"spany,grow");
-            contentPanel.add(mainRightPanel,"spany,grow");
+            JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, mainLeftPanel, mainRightPanel);
+            splitPane.setOneTouchExpandable(true);
+            splitPane.setContinuousLayout(true);
+            splitPane.setDividerSize(1);
+            splitPane.setDividerLocation(150);
+            splitPane.setOpaque(false);
+            splitPane.setBorder(null);
 
+
+
+
+            JTabbedPane tabbedPane = new JTabbedPane();
+            tabbedPane.addTab("基本信息",splitPane);
+            contentPanel.add(tabbedPane);
         }
-
 
 
 
