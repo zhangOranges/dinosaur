@@ -10,7 +10,7 @@ public class MainPanel extends JPanel {
     private Image img;
     public MainPanel(LayoutManager layout,String imgurl) {
         super(layout);
-        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource(imgurl));
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(imgurl));
         img = imageIcon.getImage();
     }
 

@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
     /**
      * 主面板右侧的中间
      */
-    private JPanel mainPanel = new MainPanel(new MigLayout(),"img/default_bg.png");
+    private JPanel mainPanel = new MainPanel(new MigLayout(),"/img/default_bg.png");
     /**
      * 主面板右侧的下边
      */
