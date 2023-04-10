@@ -1,12 +1,15 @@
 package com.zhang.dinosaur.game;
 
 import com.zhang.dinosaur.game.cs.jpanel.*;
+import com.zhang.dinosaur.game.demo.ButtonTabComponent;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import static javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT;
 
 /**
  * 主界面
@@ -37,7 +40,11 @@ public class MainFrame extends JFrame {
     /**
      * 主面板右侧的上边
      */
-    private JPanel topPanel = new TopPanel();
+    private JPanel topPanel = new TopPanel(new MigLayout());
+    /**
+     * 右侧上边的tab
+     */
+    private final JTabbedPane pane = new JTabbedPane();
 
     public MainFrame(){
         super("MainFrame view");
@@ -70,6 +77,15 @@ public class MainFrame extends JFrame {
         }
 
         {
+
+
+//            pane.add("title1", new JLabel("title1"));
+//            pane.setTabComponentAt(0,
+//                    new ButtonTabComponent(pane));
+//            pane.add("title2", new JLabel("title2"));
+//            pane.setTabComponentAt(1,
+//                    new ButtonTabComponent(pane));
+//            topPanel.add(pane);
             mainRightPanel.add(topPanel,"grow");
             mainRightPanel.add(mainPanel,"grow");
             mainRightPanel.add(southTabPane,"grow");
