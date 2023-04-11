@@ -46,8 +46,7 @@ public class DefaultPanel extends JPanel {
         Object[][] data = GContext.getHostInfo();
         if (data == null){
             data = new Object[][]{
-                    {"127.0.0.1", "/",
-                            "root"},
+                    {"127.0.0.1", "/", "root","idx"},
             };
         }
         JTable jTable = new JTable(data,columnNames);
@@ -59,7 +58,8 @@ public class DefaultPanel extends JPanel {
                 super.mouseClicked(e);
                 int selectedRow = jTable.getSelectedRow();
                 TableModel model = jTable.getModel();
-                Object valueAt = model.getValueAt(selectedRow, 0);
+                Object valueAt = model.getValueAt(selectedRow, 4);
+                log.info("{}",valueAt);
                 //通过点击  去connect host
                 int i = jTabbedPane.indexOfTab(title);
                 JPanel mainRightPanel = new JPanel(new MigLayout("wrap,fill","[grow,fill]","[grow 75,fill]0[grow 25,fill]"));
