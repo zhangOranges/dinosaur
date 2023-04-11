@@ -5,3 +5,4 @@
 5/ generate banner
 6/ add utilities for bitSet
 7/ openwrt build and filter AD
+8/ add dinosaur-egg
