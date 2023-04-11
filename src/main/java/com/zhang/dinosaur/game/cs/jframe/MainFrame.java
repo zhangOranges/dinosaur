@@ -101,7 +101,7 @@ public class MainFrame extends JFrame {
                             if ("+".equals(title)){
                                 int tabCount = pane.getTabCount();
                                 int idx = tabCount - 1;
-                                String newTitle =_prefix_title+(count);
+                                String newTitle =_prefix_title+" "+(count);
 
                                 DefaultPanel defaultPanel = new DefaultPanel();
                                 defaultPanel.setTitle(newTitle);
