@@ -20,21 +20,21 @@ public class MainFrame extends JFrame {
      * 主面板
      * new MigLayout("", "[grow 15,fill][grow 85,fill]", "[grow,fill][grow,fill]")
      */
-    private JPanel contentPanel = new ContentPanel(new MigLayout("", "[grow,fill]", "[grow,fill]"));
+    private JPanel contentPanel = new ContentPanel();
     /**
      * 主面板左侧
      */
-    private JPanel mainLeftPanel = new MainLeftPanel(new MigLayout("flowx,,wrap","[grow,fill]",""));
+    private JPanel mainLeftPanel = new MainLeftPanel();
     /**
      * 主面板右侧
      */
-    private JPanel mainRightPanel = new MainRightPanel(new MigLayout("flowy,fill","","[c,grow 75,fill]0[c,grow 25,fill]"));
+    private JPanel mainRightPanel = new MainRightPanel();
 
     /**
      * 主面板右侧的中间
      */
-    private JPanel mainPanel = new MainPanel(new MigLayout(),"/img/default_bg.png");
-    private JPanel defaultPanel = new JPanel(new MigLayout());
+    private JPanel mainPanel = new MainPanel();
+    private JPanel defaultPanel = new DefaultPanel();
     /**
      * 主面板右侧的下边
      */
@@ -69,9 +69,9 @@ public class MainFrame extends JFrame {
             contentPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
                 mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                    topPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
                     mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
                     southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
+                    defaultPanel.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
         }
 
         {
@@ -81,18 +81,14 @@ public class MainFrame extends JFrame {
         {
 
 
-//            pane.setTabComponentAt(1,
-//                    new ButtonTabComponent(pane));
-            pane.add("title1", null);
-//            pane.setTabComponentAt(1,
-//                    new ButtonTabComponent(pane));
-//            topPanel.add(pane);
+            pane.add("title1", defaultPanel);
+            ((DefaultPanel)defaultPanel).setPanel(pane);
+            ((DefaultPanel)defaultPanel).setTitle("title1");
             pane.setTabComponentAt(0,new ButtonTabComponent(pane));
             pane.add("",null);
             pane.setTabComponentAt(1,new AddTabButtonComponent(pane));
+
             mainRightPanel.add(pane,"grow");
-//            mainRightPanel.add(mainPanel,"grow");
-            mainRightPanel.add(southTabPane,"grow");
         }
 
         {

@@ -1,5 +1,7 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,9 +10,9 @@ import java.awt.*;
  */
 public class MainPanel extends JPanel {
     private Image img;
-    public MainPanel(LayoutManager layout,String imgurl) {
-        super(layout);
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource(imgurl));
+    public MainPanel() {
+        super(new MigLayout());
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/img/default_bg.png"));
         img = imageIcon.getImage();
     }
 

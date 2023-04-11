@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.demo;
 
+import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -67,7 +68,12 @@ public class AddTabButtonComponent extends JPanel {
             int tabCount = pane.getTabCount();
             int idx = tabCount - 1;
             String title = "title"+(tabCount);
-            pane.insertTab(title,null,null,null,idx);
+
+            DefaultPanel defaultPanel = new DefaultPanel();
+            defaultPanel.setTitle(title);
+            defaultPanel.setPanel(pane);
+
+            pane.insertTab(title,null,defaultPanel,null,idx);
             pane.setTabComponentAt(idx,new ButtonTabComponent(pane));
             pane.setSelectedIndex(idx);
         }
