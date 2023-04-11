@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.game.demo;
 
-import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -9,15 +8,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Component to be used as tabComponent;
- * Contains a JLabel to show the text and
- * a JButton to close the tab it belongs to
+ * AddTabButtonComponent cp BTC
  */
-@Slf4j
-public class ButtonTabComponent extends JPanel {
+public class AddTabButtonComponent extends JPanel {
     private final JTabbedPane pane;
 
-    public ButtonTabComponent(final JTabbedPane pane) {
+    public AddTabButtonComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
         super(new MigLayout("left,insets 0 0 0 0"));
         if (pane == null) {
@@ -29,7 +25,7 @@ public class ButtonTabComponent extends JPanel {
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
             public String getText() {
-                int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+                int i = pane.indexOfTabComponent(AddTabButtonComponent.this);
                 if (i != -1) {
                     return pane.getTitleAt(i);
                 }
@@ -37,21 +33,20 @@ public class ButtonTabComponent extends JPanel {
             }
         };
 
-        add(label);
         //add more space between the label and the button
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
         //tab button
-        JButton button = new TabButton();
+        JButton button = new AddTabButton();
         add(button);
         //add more space to the top of the component
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
 
-    private class TabButton extends JButton implements ActionListener {
-        public TabButton() {
-            int size = 17;
+    private class AddTabButton extends JButton implements ActionListener {
+        public AddTabButton() {
+            int size = 18;
             setPreferredSize(new Dimension(size, size));
-            setToolTipText("close this tab");
+            setToolTipText("add title");
             //Make the button looks the same for all Laf's
             setUI(new BasicButtonUI());
             //Make it transparent
@@ -69,19 +64,12 @@ public class ButtonTabComponent extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
-            if (i != -1) {
-                pane.remove(i);
-                pane.setSelectedIndex(i-1);
-            }
             int tabCount = pane.getTabCount();
-            if ((tabCount-1)==0){
-                int idx = 0;
-                String title = "title1";
-                pane.insertTab(title,null,null,null,idx);
-                pane.setTabComponentAt(idx,new ButtonTabComponent(pane));
-                pane.setSelectedIndex(idx);
-            }
+            int idx = tabCount - 1;
+            String title = "title"+(tabCount);
+            pane.insertTab(title,null,null,null,idx);
+            pane.setTabComponentAt(idx,new ButtonTabComponent(pane));
+            pane.setSelectedIndex(idx);
         }
 
         //we don't want to update UI for this button
@@ -101,9 +89,11 @@ public class ButtonTabComponent extends JPanel {
             if (getModel().isRollover()) {
                 g2.setColor(Color.MAGENTA);
             }
+            //17 * 17
+            //
             int delta = 6;
-            g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
-            g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);
+            g2.drawLine(getWidth()/2, 0+delta, getWidth()/2, getHeight()-delta);
+            g2.drawLine(0+delta, getHeight()/2, getWidth()-delta, getHeight()/2);
             g2.dispose();
         }
     }

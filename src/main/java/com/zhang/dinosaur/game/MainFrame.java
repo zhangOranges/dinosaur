@@ -1,6 +1,7 @@
 package com.zhang.dinosaur.game;
 
 import com.zhang.dinosaur.game.cs.jpanel.*;
+import com.zhang.dinosaur.game.demo.AddTabButtonComponent;
 import com.zhang.dinosaur.game.demo.ButtonTabComponent;
 import net.miginfocom.swing.MigLayout;
 
@@ -27,12 +28,13 @@ public class MainFrame extends JFrame {
     /**
      * 主面板右侧
      */
-    private JPanel mainRightPanel = new MainRightPanel(new MigLayout("flowy,fill","","[c,grow 2,fill]0[c,grow 73,fill]0[c,grow 25,fill]"));
+    private JPanel mainRightPanel = new MainRightPanel(new MigLayout("flowy,fill","","[c,grow 75,fill]0[c,grow 25,fill]"));
 
     /**
      * 主面板右侧的中间
      */
     private JPanel mainPanel = new MainPanel(new MigLayout(),"/img/default_bg.png");
+    private JPanel defaultPanel = new JPanel(new MigLayout());
     /**
      * 主面板右侧的下边
      */
@@ -79,15 +81,17 @@ public class MainFrame extends JFrame {
         {
 
 
-//            pane.add("title1", new JLabel("title1"));
-//            pane.setTabComponentAt(0,
+//            pane.setTabComponentAt(1,
 //                    new ButtonTabComponent(pane));
-//            pane.add("title2", new JLabel("title2"));
+            pane.add("title1", null);
 //            pane.setTabComponentAt(1,
 //                    new ButtonTabComponent(pane));
 //            topPanel.add(pane);
-            mainRightPanel.add(topPanel,"grow");
-            mainRightPanel.add(mainPanel,"grow");
+            pane.setTabComponentAt(0,new ButtonTabComponent(pane));
+            pane.add("",null);
+            pane.setTabComponentAt(1,new AddTabButtonComponent(pane));
+            mainRightPanel.add(pane,"grow");
+//            mainRightPanel.add(mainPanel,"grow");
             mainRightPanel.add(southTabPane,"grow");
         }
 
