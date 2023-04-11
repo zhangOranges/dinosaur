@@ -11,7 +11,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import static com.zhang.dinosaur.game.GContext._default_title;
-import static javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT;
 
 /**
  * 主界面

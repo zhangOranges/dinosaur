@@ -1,12 +1,9 @@
 package com.zhang.dinosaur.game;
 
-import cn.hutool.core.util.StrUtil;
 import com.zhang.dinosaur.common.ThreadUtils;
 import net.miginfocom.swing.MigLayout;
-import org.apache.commons.codec.binary.StringUtils;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * 提示界面
