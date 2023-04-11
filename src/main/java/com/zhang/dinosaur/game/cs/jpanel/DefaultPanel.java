@@ -32,7 +32,7 @@ public class DefaultPanel extends JPanel {
         jPanel.add(clear,"align right");
         clear.addActionListener((e)->{
             SwingUtilities.invokeLater(()->{
-                new TipFrame("no action");
+                JOptionPane.showMessageDialog(this, "no action");
             });
 
         });

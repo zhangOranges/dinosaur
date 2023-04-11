@@ -35,5 +35,6 @@ public class LoadingFrame extends JFrame {
         GContext.loadConfig();
         context.setText("loding done");
         setVisible(false);
+        dispose();
     }
 }
