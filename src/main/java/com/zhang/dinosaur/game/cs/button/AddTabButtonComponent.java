@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game.demo;
+package com.zhang.dinosaur.game.cs.button;
 
 import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import net.miginfocom.swing.MigLayout;

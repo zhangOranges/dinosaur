@@ -1,5 +1,7 @@
 package com.zhang.dinosaur.game.demo;
 
+import com.zhang.dinosaur.game.cs.button.ButtonTabComponent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

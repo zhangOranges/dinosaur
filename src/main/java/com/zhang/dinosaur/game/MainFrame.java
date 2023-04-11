@@ -1,8 +1,8 @@
 package com.zhang.dinosaur.game;
 
 import com.zhang.dinosaur.game.cs.jpanel.*;
-import com.zhang.dinosaur.game.demo.AddTabButtonComponent;
-import com.zhang.dinosaur.game.demo.ButtonTabComponent;
+import com.zhang.dinosaur.game.cs.button.AddTabButtonComponent;
+import com.zhang.dinosaur.game.cs.button.ButtonTabComponent;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;

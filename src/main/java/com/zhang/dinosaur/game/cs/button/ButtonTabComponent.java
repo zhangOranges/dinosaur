@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game.demo;
+package com.zhang.dinosaur.game.cs.button;
 
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
