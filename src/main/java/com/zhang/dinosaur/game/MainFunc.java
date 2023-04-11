@@ -1,5 +1,9 @@
 package com.zhang.dinosaur.game;
 
+import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.jframe.LoadingFrame;
+import com.zhang.dinosaur.game.cs.jframe.MainFrame;
+import com.zhang.dinosaur.game.cs.jframe.TipFrame;
 import lombok.SneakyThrows;
 
 import javax.swing.*;

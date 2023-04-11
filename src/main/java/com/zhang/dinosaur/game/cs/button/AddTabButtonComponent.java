@@ -8,7 +8,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
 
-import static com.zhang.dinosaur.game.GContext._prefix_title;
+import static com.zhang.dinosaur.game.context.GContext._prefix_title;
 
 /**
  * AddTabButtonComponent cp BTC

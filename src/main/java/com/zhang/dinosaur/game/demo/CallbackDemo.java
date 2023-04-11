@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game;
+package com.zhang.dinosaur.game.demo;
 
 import net.miginfocom.layout.BoundSize;
 import net.miginfocom.layout.ComponentWrapper;

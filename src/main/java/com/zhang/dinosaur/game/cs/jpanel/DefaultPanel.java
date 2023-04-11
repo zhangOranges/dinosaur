@@ -1,7 +1,7 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
-import com.zhang.dinosaur.game.GContext;
-import com.zhang.dinosaur.game.TipFrame;
+import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.jframe.TipFrame;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 

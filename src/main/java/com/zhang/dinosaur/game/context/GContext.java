@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game;
+package com.zhang.dinosaur.game.context;
 
 import com.zhang.dinosaur.common.ThreadUtils;
 

@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game;
+package com.zhang.dinosaur.game.cs.jframe;
 
 import com.zhang.dinosaur.game.cs.jpanel.*;
 import com.zhang.dinosaur.game.cs.button.AddTabButtonComponent;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static com.zhang.dinosaur.game.GContext._default_title;
+import static com.zhang.dinosaur.game.context.GContext._default_title;
 
 /**
  * 主界面
