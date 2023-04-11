@@ -1,6 +1,6 @@
 package com.zhang.dinosaur.game.demo;
 
-import com.zhang.dinosaur.game.cs.button.ButtonTabComponent;
+import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,7 +56,7 @@ public class TabComponentsDemo extends JFrame {
 
     private void initTabComponent(int i) {
         pane.setTabComponentAt(i,
-                new ButtonTabComponent(pane));
+                new RemovableButtonTabComponent(pane));
     }
 
     //Setting menu

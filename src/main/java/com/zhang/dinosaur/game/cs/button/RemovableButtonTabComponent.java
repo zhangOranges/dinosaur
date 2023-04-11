@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.button;
 
+import com.zhang.dinosaur.game.context.GContext;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
@@ -14,10 +15,10 @@ import java.awt.event.*;
  * a JButton to close the tab it belongs to
  */
 @Slf4j
-public class ButtonTabComponent extends JPanel {
+public class RemovableButtonTabComponent extends JPanel {
     private final JTabbedPane pane;
 
-    public ButtonTabComponent(final JTabbedPane pane) {
+    public RemovableButtonTabComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
         super(new MigLayout("left,insets 0 0 0 0"));
         if (pane == null) {
@@ -29,7 +30,7 @@ public class ButtonTabComponent extends JPanel {
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
             public String getText() {
-                int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+                int i = pane.indexOfTabComponent(RemovableButtonTabComponent.this);
                 if (i != -1) {
                     return pane.getTitleAt(i);
                 }
@@ -69,18 +70,24 @@ public class ButtonTabComponent extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+            int i = pane.indexOfTabComponent(RemovableButtonTabComponent.this);
+            //one remove tab
             if (i != -1) {
                 pane.remove(i);
-                pane.setSelectedIndex(i-1);
-            }
-            int tabCount = pane.getTabCount();
-            if ((tabCount-1)==0){
-                int idx = 0;
-                String title = "title1";
-                pane.insertTab(title,null,null,null,idx);
-                pane.setTabComponentAt(idx,new ButtonTabComponent(pane));
-                pane.setSelectedIndex(idx);
+
+                int initTab = 2;
+                int tabCount = pane.getTabCount();
+                if (tabCount<initTab){
+                    //con  init tab
+                    pane.insertTab(GContext._default_title,null,null,null,0);
+                    pane.setTabComponentAt(0,new RemovableButtonTabComponent(pane));
+                    pane.setSelectedIndex(0);
+                }else{
+                    int selectedIndex = pane.getSelectedIndex();
+                    pane.setSelectedComponent(pane.getComponentAt(selectedIndex));
+                }
+
+
             }
         }
 

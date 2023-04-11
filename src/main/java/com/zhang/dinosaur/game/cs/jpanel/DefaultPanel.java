@@ -1,7 +1,6 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.context.GContext;
-import com.zhang.dinosaur.game.cs.jframe.TipFrame;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
@@ -48,7 +47,12 @@ public class DefaultPanel extends JPanel {
                     {"127.0.0.1", "/", "root","idx"},
             };
         }
-        JTable jTable = new JTable(data,columnNames);
+        JTable jTable = new JTable(data,columnNames){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         jTable.setSelectionMode(SINGLE_SELECTION);
 
         jTable.addMouseListener(new MouseAdapter() {
@@ -57,7 +61,7 @@ public class DefaultPanel extends JPanel {
                 super.mouseClicked(e);
                 int selectedRow = jTable.getSelectedRow();
                 TableModel model = jTable.getModel();
-                Object valueAt = model.getValueAt(selectedRow, 4);
+                Object valueAt = model.getValueAt(selectedRow, 3);
                 log.info("{}",valueAt);
                 //通过点击  去connect host
                 int i = jTabbedPane.indexOfTab(title);

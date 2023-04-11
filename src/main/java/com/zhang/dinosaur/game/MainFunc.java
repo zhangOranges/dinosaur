@@ -14,6 +14,8 @@ import javax.swing.*;
 public class MainFunc {
     @SneakyThrows
     public static void main(String[] args) {
+
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         //加载配置相关
         LoadingFrame loadingFrame = new LoadingFrame();
         SwingUtilities.invokeAndWait(()->{

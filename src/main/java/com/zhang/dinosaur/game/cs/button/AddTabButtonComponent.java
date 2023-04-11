@@ -76,7 +76,7 @@ public class AddTabButtonComponent extends JPanel {
             defaultPanel.setPanel(pane);
 
             pane.insertTab(title,null,defaultPanel,null,idx);
-            pane.setTabComponentAt(idx,new ButtonTabComponent(pane));
+            pane.setTabComponentAt(idx,new RemovableButtonTabComponent(pane));
             pane.setSelectedIndex(idx);
         }
 

@@ -1,16 +1,18 @@
 package com.zhang.dinosaur.game.cs.jframe;
 
 import com.zhang.dinosaur.game.cs.jpanel.*;
-import com.zhang.dinosaur.game.cs.button.AddTabButtonComponent;
-import com.zhang.dinosaur.game.cs.button.ButtonTabComponent;
+import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import static com.zhang.dinosaur.game.context.GContext._default_title;
+import static com.zhang.dinosaur.game.context.GContext._prefix_title;
 
 /**
  * 主界面
@@ -71,7 +73,6 @@ public class MainFrame extends JFrame {
                 mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
                     southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
-                    defaultPanel.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
         }
 
         {
@@ -84,9 +85,44 @@ public class MainFrame extends JFrame {
             pane.add(_default_title, defaultPanel);
             ((DefaultPanel)defaultPanel).setPanel(pane);
             ((DefaultPanel)defaultPanel).setTitle(_default_title);
-            pane.setTabComponentAt(0,new ButtonTabComponent(pane));
-            pane.add("",null);
-            pane.setTabComponentAt(1,new AddTabButtonComponent(pane));
+            pane.setTabComponentAt(0,new RemovableButtonTabComponent(pane));
+            pane.add("+",new JPanel());
+            pane.getModel().addChangeListener(new ChangeListener() {
+                //count start 2
+                private long count = 2;
+                private boolean ignore = false;
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    if (!ignore){
+                        ignore=true;
+                        try {
+                            int selectedIndex = pane.getSelectedIndex();
+                            String title = pane.getTitleAt(selectedIndex);
+                            if ("+".equals(title)){
+                                int tabCount = pane.getTabCount();
+                                int idx = tabCount - 1;
+                                String newTitle =_prefix_title+(count);
+
+                                DefaultPanel defaultPanel = new DefaultPanel();
+                                defaultPanel.setTitle(newTitle);
+                                defaultPanel.setPanel(pane);
+
+                                pane.insertTab(newTitle,null,defaultPanel,null,idx);
+                                pane.setTabComponentAt(idx,new RemovableButtonTabComponent(pane));
+                                pane.setSelectedIndex(idx);
+                                count++;
+                            }
+
+
+                        }finally {
+                            ignore = false;
+                        }
+                    }
+                }
+            });
+//            pane.setTabComponentAt(1,new AddTabButtonComponent(pane));
+
+
 
             mainRightPanel.add(pane,"grow");
         }
