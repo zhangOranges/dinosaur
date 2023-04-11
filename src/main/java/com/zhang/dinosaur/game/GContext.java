@@ -25,4 +25,13 @@ public class GContext {
     public static void loadConfig(){
         ThreadUtils.sleep(100);
     }
+
+    /**
+     * get host info
+     * @return
+     */
+    public static Object[][] getHostInfo(){
+
+        return null;
+    }
 }

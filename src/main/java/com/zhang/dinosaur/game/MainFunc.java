@@ -21,7 +21,7 @@ public class MainFunc {
             new MainFrame();
             //加载小提示
             if (GContext.isShowTip()) {
-                new TipFrame();
+                new TipFrame("");
             }
         });
     }
