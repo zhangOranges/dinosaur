@@ -62,7 +62,7 @@ public class DefaultPanel extends JPanel {
                 int selectedRow = jTable.getSelectedRow();
                 TableModel model = jTable.getModel();
                 Object valueAt = model.getValueAt(selectedRow, 3);
-                log.info("{}",valueAt);
+                log.info("click row {}",valueAt);
                 //通过点击  去connect host
                 int i = jTabbedPane.indexOfTab(title);
                 JPanel mainRightPanel = new JPanel(new MigLayout("wrap,fill","[grow,fill]","[grow 75,fill]0[grow 25,fill]"));
