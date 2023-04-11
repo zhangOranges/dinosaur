@@ -8,6 +8,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
 
+import static com.zhang.dinosaur.game.GContext._prefix_title;
+
 /**
  * AddTabButtonComponent cp BTC
  */
@@ -67,7 +69,7 @@ public class AddTabButtonComponent extends JPanel {
         public void actionPerformed(ActionEvent e) {
             int tabCount = pane.getTabCount();
             int idx = tabCount - 1;
-            String title = "title"+(tabCount);
+            String title =_prefix_title+(tabCount);
 
             DefaultPanel defaultPanel = new DefaultPanel();
             defaultPanel.setTitle(title);

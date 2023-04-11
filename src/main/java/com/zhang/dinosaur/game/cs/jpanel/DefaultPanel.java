@@ -19,11 +19,14 @@ public class DefaultPanel extends JPanel {
         jPanel.setBackground(Color.LIGHT_GRAY);
         jPanel.setPreferredSize(new Dimension(this.getWidth(),30));
         add(jPanel);
-        JButton hello = new JButton("hello");
-        add(hello);
-        hello.addActionListener((e)->{
+        JButton connect = new JButton("connect");
+        add(connect);
+        connect.addActionListener((e)->{
             int i = jTabbedPane.indexOfTab(title);
-            jTabbedPane.setComponentAt(i,new MainPanel());
+            JPanel mainRightPanel = new JPanel(new MigLayout("wrap,fill","[grow,fill]","[grow 75,fill]0[grow 25,fill]"));
+            mainRightPanel.add(new MainPanel());
+            mainRightPanel.add(new JTabbedPane());
+            jTabbedPane.setComponentAt(i,mainRightPanel);
         });
     }
 

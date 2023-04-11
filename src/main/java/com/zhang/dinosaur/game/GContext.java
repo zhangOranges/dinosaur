@@ -8,6 +8,9 @@ import com.zhang.dinosaur.common.ThreadUtils;
 
 public class GContext {
 
+    public static final String _prefix_title = "标签页";
+    public static final String _default_title = "标签页 1";
+
     private GContext(){}
     private static boolean showTip = false;
     public static void setShowTip(boolean showTip) {

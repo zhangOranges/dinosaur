@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import static com.zhang.dinosaur.game.GContext._default_title;
 import static javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT;
 
 /**
@@ -80,10 +81,10 @@ public class MainFrame extends JFrame {
 
         {
 
-
-            pane.add("title1", defaultPanel);
+            //添加默认的title panel
+            pane.add(_default_title, defaultPanel);
             ((DefaultPanel)defaultPanel).setPanel(pane);
-            ((DefaultPanel)defaultPanel).setTitle("title1");
+            ((DefaultPanel)defaultPanel).setTitle(_default_title);
             pane.setTabComponentAt(0,new ButtonTabComponent(pane));
             pane.add("",null);
             pane.setTabComponentAt(1,new AddTabButtonComponent(pane));
