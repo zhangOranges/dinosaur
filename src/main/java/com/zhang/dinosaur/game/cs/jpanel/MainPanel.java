@@ -34,10 +34,10 @@ public class MainPanel extends JPanel {
             jFrame.setLocationRelativeTo(null);
             MainPanel mainPanel = new MainPanel();
             {
+
                 JTextPane textPane = new MainJTextPane();
                 textPane.setBorder(BorderFactory.createLineBorder(Color.cyan));
                 final JScrollPane scrollPane = new MainJScrollPane(textPane);
-
                 mainPanel.add(scrollPane);
             }
 
