@@ -1,13 +1,9 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
-import com.sun.java.swing.plaf.motif.MotifTextUI;
-import com.zhang.dinosaur.game.cs.compone.CsCaret;
 import net.miginfocom.swing.MigLayout;
-import org.pcap4j.packet.Dot11LinkAdaptationControl;
 
 import javax.swing.*;
-import javax.swing.plaf.TextUI;
-import javax.swing.text.*;
+
 import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -39,7 +35,10 @@ public class MainPanel extends JPanel {
             MainPanel mainPanel = new MainPanel();
             {
                 JTextPane textPane = new MainJTextPane();
-                mainPanel.add(textPane);
+                textPane.setBorder(BorderFactory.createLineBorder(Color.cyan));
+                final JScrollPane scrollPane = new MainJScrollPane(textPane);
+
+                mainPanel.add(scrollPane);
             }
 
             jFrame.setContentPane(mainPanel);
