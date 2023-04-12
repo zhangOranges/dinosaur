@@ -1,10 +1,12 @@
 package com.zhang.dinosaur.game.cs.button;
 
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
@@ -73,18 +75,35 @@ public class RemovableButtonTabComponent extends JPanel {
             int i = pane.indexOfTabComponent(RemovableButtonTabComponent.this);
             //one remove tab
             if (i != -1) {
-                pane.remove(i);
-
                 int initTab = 2;
                 int tabCount = pane.getTabCount();
-                if (tabCount<initTab){
-                    //con  init tab
-                    pane.insertTab(GContext._default_title,null,null,null,0);
-                    pane.setTabComponentAt(0,new RemovableButtonTabComponent(pane));
-                    pane.setSelectedIndex(0);
+
+
+
+                //if only two tab and i eq 0   only change title
+                if (tabCount>initTab|| i!=0){
+                    pane.remove(i);
                 }else{
+                    pane.setTitleAt(i,GContext._default_title);
+                }
+
+                //
+                tabCount = pane.getTabCount();
+                if (tabCount<initTab){
+//                    //con  init tab
+                    DefaultPanel defaultPanel = new DefaultPanel();
+                    defaultPanel.setTitle(GContext._default_title);
+                    defaultPanel.setPanel(pane);
+
+                    pane.setSelectedIndex(0);
+                    pane.insertTab(GContext._default_title,null,defaultPanel,null,0);
+                    pane.setTabComponentAt(0,new RemovableButtonTabComponent(pane));
+
+                }else if(tabCount > initTab){
                     int selectedIndex = pane.getSelectedIndex();
                     pane.setSelectedComponent(pane.getComponentAt(selectedIndex));
+                }else{
+                    pane.setSelectedComponent(pane.getComponentAt(0));
                 }
 
 

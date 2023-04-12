@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.sun.java.swing.plaf.motif.MotifTextUI;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
 import net.miginfocom.swing.MigLayout;
 import org.pcap4j.packet.Dot11LinkAdaptationControl;
@@ -9,13 +10,15 @@ import javax.swing.plaf.TextUI;
 import javax.swing.text.*;
 import java.awt.*;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 /**
  * 主面板
  */
 public class MainPanel extends JPanel {
     private Image img;
     public MainPanel() {
-        super(new MigLayout());
+        super(new MigLayout("ins 10 10 10 10","grow,fill","grow,fill"));
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/img/default_bg.png"));
         img = imageIcon.getImage();
     }
@@ -30,31 +33,12 @@ public class MainPanel extends JPanel {
 
         SwingUtilities.invokeLater(()->{
             JFrame jFrame = new JFrame();
+            jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
             jFrame.setSize(1000, 750);
             jFrame.setLocationRelativeTo(null);
             MainPanel mainPanel = new MainPanel();
-
             {
-                JTextPane textPane = new JTextPane();
-                textPane.putClientProperty("caretWidth", 10);
-//                DefaultCaret caret = new CsCaret();
-//                caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-//                textPane.setCaret(caret);
-
-
-
-
-
-
-                textPane.setOpaque(false);
-
-
-                textPane.setCaretColor(Color.GREEN);
-                textPane.setForeground(Color.WHITE);
-
-
-
-
+                JTextPane textPane = new MainJTextPane();
                 mainPanel.add(textPane);
             }
 

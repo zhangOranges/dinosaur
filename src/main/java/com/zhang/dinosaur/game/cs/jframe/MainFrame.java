@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.jframe;
 
+import com.zhang.dinosaur.game.context.GContext;
 import com.zhang.dinosaur.game.cs.jpanel.*;
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import net.miginfocom.swing.MigLayout;
@@ -97,6 +98,7 @@ public class MainFrame extends JFrame {
                         ignore=true;
                         try {
                             int selectedIndex = pane.getSelectedIndex();
+
                             String title = pane.getTitleAt(selectedIndex);
                             if ("+".equals(title)){
                                 int tabCount = pane.getTabCount();
