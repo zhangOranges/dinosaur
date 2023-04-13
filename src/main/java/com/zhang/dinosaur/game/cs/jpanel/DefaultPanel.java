@@ -66,7 +66,17 @@ public class DefaultPanel extends JPanel {
                 //通过点击  去connect host
                 int i = jTabbedPane.indexOfTab(title);
                 JPanel mainRightPanel = new JPanel(new MigLayout("wrap,fill","[grow,fill]","[grow 75,fill]0[grow 25,fill]"));
-                mainRightPanel.add(new MainPanel());
+
+                MainPanel mainPanel = new MainPanel();
+
+                JTextPane textPane = new MainJTextPane();
+                JScrollPane scrollPane = new MainJScrollPane(textPane);
+                mainPanel.add(scrollPane);
+
+                //add text
+                mainPanel.add(new MainToolBarPanel());
+
+                mainRightPanel.add(mainPanel);
                 mainRightPanel.add(new JTabbedPane());
                 jTabbedPane.setComponentAt(i,mainRightPanel);
             }

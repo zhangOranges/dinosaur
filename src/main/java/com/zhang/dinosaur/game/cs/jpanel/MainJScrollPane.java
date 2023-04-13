@@ -1,5 +1,7 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.cs.compone.CsScrollBarUI;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -12,7 +14,16 @@ public class MainJScrollPane extends JScrollPane {
         this.view = view;
         setOpaque(false);
         getViewport().setOpaque(false);
+
+        //scroll bar alpha
+        getVerticalScrollBar().setOpaque(false);
+        getHorizontalScrollBar().setOpaque(false);
+
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+        getVerticalScrollBar().setUI(new CsScrollBarUI());
+
+        setBorder(BorderFactory.createEmptyBorder());
+
         view.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
