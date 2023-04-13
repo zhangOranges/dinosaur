@@ -69,11 +69,11 @@ public class MainFrame extends JFrame {
         }
         //用于debug
         {
-            contentPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-                mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                    mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
-                    southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
+//            contentPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+//                mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//                mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//                    mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+//                    southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
         }
 
         {
