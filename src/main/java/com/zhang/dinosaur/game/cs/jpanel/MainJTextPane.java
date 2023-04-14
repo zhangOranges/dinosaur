@@ -16,6 +16,8 @@ public class MainJTextPane extends JTextPane {
         setForeground(Color.WHITE);
         setFont(new Font("", Font.PLAIN, 17));
         setEditorKit(new WrapEditorKit());
+
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
     @Override
     public boolean getScrollableTracksViewportWidth() {

@@ -74,7 +74,7 @@ public class DefaultPanel extends JPanel {
                 mainPanel.add(scrollPane);
 
                 //add text
-                mainPanel.add(new MainToolBarPanel());
+                mainPanel.add(new MainToolBarPanel(textPane));
 
                 mainRightPanel.add(mainPanel);
                 mainRightPanel.add(new JTabbedPane());

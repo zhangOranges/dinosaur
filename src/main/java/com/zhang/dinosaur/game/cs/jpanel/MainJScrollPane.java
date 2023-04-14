@@ -3,8 +3,7 @@ package com.zhang.dinosaur.game.cs.jpanel;
 import com.zhang.dinosaur.game.cs.compone.CsScrollBarUI;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+
 import java.awt.*;
 
 public class MainJScrollPane extends JScrollPane {
@@ -24,26 +23,26 @@ public class MainJScrollPane extends JScrollPane {
 
         setBorder(BorderFactory.createEmptyBorder());
 
-        view.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updateSize();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                updateSize();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updateSize();
-            }
-
-            private void updateSize() {
-                view.revalidate();
-            }
-        });
+//        view.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                updateSize();
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                updateSize();
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                updateSize();
+//            }
+//
+//            private void updateSize() {
+//                view.revalidate();
+//            }
+//        });
     }
 
     @Override
