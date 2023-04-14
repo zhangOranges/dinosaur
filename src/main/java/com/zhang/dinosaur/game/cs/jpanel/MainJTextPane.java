@@ -1,13 +1,15 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.common.ThreadUtils;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
 
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
 
+
 public class MainJTextPane extends JTextPane {
-    public MainJTextPane() {
+    public MainJTextPane(boolean isedit) {
         CsCaret csCaret = new CsCaret();
         csCaret.setBlinkRate(500);
         setCaret(csCaret);
@@ -16,8 +18,12 @@ public class MainJTextPane extends JTextPane {
         setForeground(Color.WHITE);
         setFont(new Font("", Font.PLAIN, 17));
         setEditorKit(new WrapEditorKit());
-
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        setEditable(isedit);
+        setPreferredSize(new Dimension(100,20));
+
+//        setDocument(new WrapDocument());
+
     }
     @Override
     public boolean getScrollableTracksViewportWidth() {
@@ -31,7 +37,20 @@ public class MainJTextPane extends JTextPane {
             return defaultFactory;
         }
     }
+    class WrapDocument extends DefaultStyledDocument {
+        public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+            if (str == null || str.isEmpty()) {
+                super.insertString(offs, str, a);
+                return;
+            }
 
+            char[] chars = str.toCharArray();
+            int len = chars.length;
+            for (int i = 0; i < len; i++) {
+                    super.insertString(offs++, String.valueOf(chars[i]), a);
+            }
+        }
+    }
     private class WrapColumnFactory implements ViewFactory {
         @Override
         public View create(final Element element) {

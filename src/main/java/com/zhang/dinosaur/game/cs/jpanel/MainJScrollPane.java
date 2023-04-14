@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainJScrollPane extends JScrollPane {
-    private JTextPane view;
-    public MainJScrollPane(JTextPane view) {
+    private JPanel view;
+    public MainJScrollPane(JPanel view) {
         super(view);
         this.view = view;
         setOpaque(false);

@@ -1,6 +1,7 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
@@ -69,16 +70,26 @@ public class DefaultPanel extends JPanel {
 
                 MainPanel mainPanel = new MainPanel();
 
-                JTextPane textPane = new MainJTextPane();
-                JScrollPane scrollPane = new MainJScrollPane(textPane);
+                JPanel mainPanel2 = new JPanel(new MigLayout("wrap,insets 0 0 0 0","grow,fill","[]0[]"));
+                mainPanel2.setOpaque(false);
+
+                JTextArea noEditTextArea = new ShowTextArea();
+                JTextArea jTextArea = new InputTextArea(noEditTextArea);
+
+                mainPanel2.add(noEditTextArea);
+                mainPanel2.add(jTextArea);
+                JScrollPane scrollPane = new MainJScrollPane(mainPanel2);
+
                 mainPanel.add(scrollPane);
 
                 //add text
-                mainPanel.add(new MainToolBarPanel(textPane));
+                mainPanel.add(new MainToolBarPanel(noEditTextArea));
 
                 mainRightPanel.add(mainPanel);
-                mainRightPanel.add(new JTabbedPane());
-                jTabbedPane.setComponentAt(i,mainRightPanel);
+                JTabbedPane jTabbedPane = new JTabbedPane();
+                jTabbedPane.add("file",new FilePanel());
+                mainRightPanel.add(jTabbedPane);
+                DefaultPanel.this.jTabbedPane.setComponentAt(i,mainRightPanel);
             }
         });
 

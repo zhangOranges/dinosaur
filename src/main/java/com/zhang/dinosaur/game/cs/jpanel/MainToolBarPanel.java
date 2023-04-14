@@ -1,21 +1,19 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.text.Utilities;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 
 public class MainToolBarPanel extends JPanel {
-    private JTextPane view;
-    public MainToolBarPanel(JTextPane view) {
+    private JTextArea view;
+    public MainToolBarPanel(JTextArea view) {
         //todo   add bar
         super(new MigLayout("insets 10 10 -20 0","[grow 80,fill][grow 20,fill]",""));
         this.view = view;
@@ -44,28 +42,7 @@ public class MainToolBarPanel extends JPanel {
 
         //func button
         Button button = new Button("b1");
-        jTextArea.addKeyListener(new KeyAdapter() {
-            private int i = 0;
-            @Override
-            public void keyPressed(KeyEvent e) {
-                //impl wrap   next time impl interaction
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String text = jTextArea.getText().replaceAll("\\n", "").trim();
-                    {
-                        Document document = view.getDocument();
-                        try {
-                            document.insertString(document.getLength(),text+"\n",null);
-                        } catch (BadLocationException badLocationException) {
-                            badLocationException.printStackTrace();
-                        }
-                    }
-                    jTextArea.setText("");
-                    jTextArea.setCaretPosition(0);
-                }else{
-                    super.keyPressed(e);
-                }
-            }
-        });
+        jTextArea.addKeyListener(new TextAreaToJTextPanelKeyAdapter(jTextArea,view));
 
         add(button);
     }
