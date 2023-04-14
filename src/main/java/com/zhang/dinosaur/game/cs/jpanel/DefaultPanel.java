@@ -78,7 +78,6 @@ public class DefaultPanel extends JPanel {
 
 
 
-                GContextEventBus.post(new ShowTextAddContentEvent("connect server",null));
                 GContextEventBus.post(new ShowTextAddContentEvent("connect server...",null));
                 JTextArea jTextArea = new InputTextArea();
 

@@ -29,7 +29,6 @@ public class InputTextArea extends JTextArea implements FocusEventListener{
         grabFocus();
 
 
-        setBorder(BorderFactory.createLineBorder(Color.cyan));
         GContextEventBus.register(this);
     }
 

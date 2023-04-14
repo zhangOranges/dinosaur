@@ -3,6 +3,7 @@ package com.zhang.dinosaur.game.cs.jpanel;
 import com.zhang.dinosaur.common.EventBusUtil;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
+import com.zhang.dinosaur.game.cs.event.FocusEvent;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 import com.zhang.dinosaur.game.cs.listener.TextInputEventListener;
 
@@ -10,6 +11,8 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class ShowTextArea extends JTextArea implements TextInputEventListener {
@@ -27,8 +30,13 @@ public class ShowTextArea extends JTextArea implements TextInputEventListener {
         setFont(new Font("", Font.PLAIN, 17));
 
 
-        setBorder(BorderFactory.createLineBorder(Color.cyan));
-
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                GContextEventBus.post(new FocusEvent());
+            }
+        });
         GContextEventBus.register(this);
 
     }
