@@ -7,11 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InputTextArea extends JTextArea {
-    private JTextArea out;
-    public InputTextArea(JTextArea out) {
+
+    public InputTextArea() {
         super();
 
-        this.out = out;
         setLineWrap(true);
         setWrapStyleWord(true);
         CsCaret csCaret = new CsCaret();
@@ -22,7 +21,7 @@ public class InputTextArea extends JTextArea {
         setForeground(Color.WHITE);
         setFont(new Font("", Font.PLAIN, 17));
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        addKeyListener(new TextAreaToJTextPanelKeyAdapter(this,out));
+        addKeyListener(new TextAreaToJTextPanelKeyAdapter(this));
         grabFocus();
 
 

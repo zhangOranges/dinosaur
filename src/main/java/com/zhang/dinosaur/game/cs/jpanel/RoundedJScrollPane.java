@@ -1,5 +1,7 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
+
 import javax.swing.*;
 import java.awt.*;
 

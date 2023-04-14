@@ -1,7 +1,8 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.context.GContext;
-import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
+import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
@@ -74,7 +75,12 @@ public class DefaultPanel extends JPanel {
                 mainPanel2.setOpaque(false);
 
                 JTextArea noEditTextArea = new ShowTextArea();
-                JTextArea jTextArea = new InputTextArea(noEditTextArea);
+
+
+
+                GContextEventBus.post(new ShowTextAddContentEvent("connect server",null));
+                GContextEventBus.post(new ShowTextAddContentEvent("connect server...",null));
+                JTextArea jTextArea = new InputTextArea();
 
                 mainPanel2.add(noEditTextArea);
                 mainPanel2.add(jTextArea);
@@ -83,7 +89,7 @@ public class DefaultPanel extends JPanel {
                 mainPanel.add(scrollPane);
 
                 //add text
-                mainPanel.add(new MainToolBarPanel(noEditTextArea));
+                mainPanel.add(new MainToolBarPanel());
 
                 mainRightPanel.add(mainPanel);
                 JTabbedPane jTabbedPane = new JTabbedPane();

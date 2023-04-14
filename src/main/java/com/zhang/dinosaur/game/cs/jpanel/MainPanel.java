@@ -24,26 +24,4 @@ public class MainPanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(img,0,0,this.getWidth(),this.getHeight(),this);
     }
-
-//    public static void main(String[] args) {
-//
-//        SwingUtilities.invokeLater(()->{
-//            JFrame jFrame = new JFrame();
-//            jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//            jFrame.setSize(1000, 750);
-//            jFrame.setLocationRelativeTo(null);
-//            MainPanel mainPanel = new MainPanel();
-//            {
-//
-//                JTextPane textPane = new MainJTextPane();
-////                textPane.setBorder(BorderFactory.createLineBorder(Color.cyan));
-//                final JScrollPane scrollPane = new MainJScrollPane(textPane);
-//                mainPanel.add(scrollPane);
-//            }
-//
-//            jFrame.setContentPane(mainPanel);
-//            jFrame.setVisible(true);
-//        });
-//
-//    }
 }
