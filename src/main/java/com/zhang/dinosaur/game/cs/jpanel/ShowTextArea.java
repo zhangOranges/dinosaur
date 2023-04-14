@@ -8,6 +8,7 @@ import java.awt.*;
 public class ShowTextArea extends JTextArea {
     public ShowTextArea() {
         super();
+        setFocusable(false);
         setLineWrap(true);
         setEditable(false);
         setOpaque(false);

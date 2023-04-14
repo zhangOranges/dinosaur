@@ -24,7 +24,7 @@ public class MainFunc {
         SwingUtilities.invokeLater(()->{
 
             //加载主界面
-            new MainFrame();
+            new MainFrame().pack();
             //加载小提示
             if (GContext.isShowTip()) {
                 new TipFrame("");

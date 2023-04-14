@@ -23,7 +23,10 @@ public class InputTextArea extends JTextArea {
         setFont(new Font("", Font.PLAIN, 17));
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         addKeyListener(new TextAreaToJTextPanelKeyAdapter(this,out));
+        grabFocus();
+
 
         setBorder(BorderFactory.createLineBorder(Color.cyan));
+
     }
 }
