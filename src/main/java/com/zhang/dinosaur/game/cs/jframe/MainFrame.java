@@ -123,8 +123,6 @@ public class MainFrame extends JFrame {
                     }
                 }
             });
-//            pane.setTabComponentAt(1,new AddTabButtonComponent(pane));
-
 
 
             mainRightPanel.add(pane,"grow");

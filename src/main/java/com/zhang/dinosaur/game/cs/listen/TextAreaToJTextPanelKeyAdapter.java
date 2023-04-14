@@ -1,6 +1,7 @@
 package com.zhang.dinosaur.game.cs.listen;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.cs.event.FocusEvent;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 
 import javax.swing.*;

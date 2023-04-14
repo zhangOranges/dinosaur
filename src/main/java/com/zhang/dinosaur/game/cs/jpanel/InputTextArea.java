@@ -1,7 +1,11 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
+import com.zhang.dinosaur.game.cs.event.EventObject;
+import com.zhang.dinosaur.game.cs.event.FocusEvent;
 import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
+import com.zhang.dinosaur.game.cs.listener.FocusEventListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,4 +32,6 @@ public class InputTextArea extends JTextArea {
         setBorder(BorderFactory.createLineBorder(Color.cyan));
 
     }
+
+
 }
