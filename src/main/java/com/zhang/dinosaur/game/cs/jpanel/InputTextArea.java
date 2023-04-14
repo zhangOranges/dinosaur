@@ -10,7 +10,7 @@ import com.zhang.dinosaur.game.cs.listener.FocusEventListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class InputTextArea extends JTextArea {
+public class InputTextArea extends JTextArea implements FocusEventListener{
 
     public InputTextArea() {
         super();
@@ -30,8 +30,12 @@ public class InputTextArea extends JTextArea {
 
 
         setBorder(BorderFactory.createLineBorder(Color.cyan));
-
+        GContextEventBus.register(this);
     }
 
 
+    @Override
+    public void action(FocusEvent e) {
+        grabFocus();
+    }
 }

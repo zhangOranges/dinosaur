@@ -1,10 +1,14 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsScrollBarUI;
+import com.zhang.dinosaur.game.cs.event.FocusEvent;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainJScrollPane extends JScrollPane {
     private JPanel view;
@@ -22,6 +26,14 @@ public class MainJScrollPane extends JScrollPane {
         getVerticalScrollBar().setUI(new CsScrollBarUI());
 
         setBorder(BorderFactory.createEmptyBorder());
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                GContextEventBus.post(new FocusEvent());
+            }
+        });
 
 //        view.getDocument().addDocumentListener(new DocumentListener() {
 //            @Override

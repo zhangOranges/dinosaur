@@ -1,10 +1,14 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.cs.event.FocusEvent;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
