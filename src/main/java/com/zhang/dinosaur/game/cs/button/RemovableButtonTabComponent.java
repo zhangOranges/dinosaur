@@ -85,6 +85,11 @@ public class RemovableButtonTabComponent extends JPanel {
                     pane.remove(i);
                 }else{
                     pane.setTitleAt(i,GContext._default_title);
+                    DefaultPanel defaultPanel = new DefaultPanel();
+                    defaultPanel.setTitle(GContext._default_title);
+                    defaultPanel.setPanel(pane);
+                    pane.setComponentAt(i,defaultPanel);
+
                 }
 
                 //
