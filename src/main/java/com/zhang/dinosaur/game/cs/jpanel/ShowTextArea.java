@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
-import com.zhang.dinosaur.common.EventBusUtil;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
 import com.zhang.dinosaur.game.cs.event.FocusEvent;
