@@ -64,8 +64,8 @@ public class MainFrame extends JFrame {
                 }
             });
 //            setResizable(false);
-            setSize(1000, 750);
-            setPreferredSize(new Dimension(1000,750));
+            setSize(1200,800);
+            setPreferredSize(new Dimension(1200,800));
             setLocationRelativeTo(null);
         }
         //用于debug
