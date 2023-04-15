@@ -93,7 +93,12 @@ public class DefaultPanel extends JPanel {
                 mainRightPanel.add(mainPanel);
                 JTabbedPane jTabbedPane = new JTabbedPane();
                 jTabbedPane.add("file",new FilePanel());
-                mainRightPanel.add(jTabbedPane);
+
+                JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, mainPanel, jTabbedPane);
+                splitPane.setDividerLocation(400);
+                splitPane.setResizeWeight(0.6);
+
+                mainRightPanel.add(splitPane);
                 DefaultPanel.this.jTabbedPane.setComponentAt(i,mainRightPanel);
             }
         });
