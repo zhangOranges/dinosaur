@@ -1,11 +1,10 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
-import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
+import com.zhang.dinosaur.game.cs.dapter.TextAreaToJTextPanelKeyAdapter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class MainToolBarTextArea extends JTextArea {

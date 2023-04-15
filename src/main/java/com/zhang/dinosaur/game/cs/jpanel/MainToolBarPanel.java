@@ -1,14 +1,9 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
-import com.zhang.dinosaur.game.cs.listen.TextAreaToJTextPanelKeyAdapter;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Utilities;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
