@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.zhang.dinosaur.game.context.GContext;
 import com.zhang.dinosaur.game.cs.jframe.LoadingFrame;
 import com.zhang.dinosaur.game.cs.jframe.MainFrame;
@@ -15,7 +16,10 @@ public class MainFunc {
     @SneakyThrows
     public static void main(String[] args) {
 
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+        UIManager.setLookAndFeel(new FlatLightLaf());
+
         //加载配置相关
         LoadingFrame loadingFrame = new LoadingFrame();
         SwingUtilities.invokeAndWait(()->{

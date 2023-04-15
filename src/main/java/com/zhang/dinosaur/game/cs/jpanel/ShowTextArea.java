@@ -28,7 +28,6 @@ public class ShowTextArea extends JTextArea implements TextInputEventListener {
         setForeground(Color.WHITE);
         setFont(new Font("", Font.PLAIN, 17));
 
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

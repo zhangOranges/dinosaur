@@ -27,9 +27,10 @@ public class InputTextArea extends JTextArea implements FocusEventListener{
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         addKeyListener(new TextAreaToJTextPanelKeyAdapter(this));
         grabFocus();
-
-
         GContextEventBus.register(this);
+        Insets margin = getMargin();
+        margin.set(-2,margin.left,margin.bottom,margin.right);
+        setMargin(margin);
     }
 
 
