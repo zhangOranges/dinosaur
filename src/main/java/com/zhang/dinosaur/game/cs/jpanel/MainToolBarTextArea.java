@@ -1,12 +1,13 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.cs.dapter.TextAreaToJTextPanelKeyAdapter;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-
+@Slf4j
 public class MainToolBarTextArea extends JTextArea {
     public MainToolBarTextArea() {
         setLineWrap(false);
@@ -20,7 +21,7 @@ public class MainToolBarTextArea extends JTextArea {
         getActionMap().put("tab", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("press tab");
+                log.debug("press tab");
             }
         });
     }

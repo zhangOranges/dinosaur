@@ -6,6 +6,7 @@ import com.zhang.dinosaur.game.cs.compone.CsTree;
 import com.zhang.dinosaur.game.cs.event.ConnectionSucceedEvent;
 import com.zhang.dinosaur.game.cs.event.TreeClickedEvent;
 import com.zhang.dinosaur.game.cs.listener.ConnectionSucceedEventListener;
+import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
-
+@Slf4j
 public class FilePanel extends JPanel implements ConnectionSucceedEventListener {
     private DefaultMutableTreeNode root =
             new DefaultMutableTreeNode("/");
@@ -30,7 +31,7 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
         Button b1 = new Button("b1");
         b1.addActionListener((t)->{
             GContextEventBus.post(new ConnectionSucceedEvent());
-            System.out.println("fasong ConnectionSucceedEvent");
+            log.debug("send ConnectionSucceedEvent");
         });
         top.add(b1);
         top.add(new Button("b2"));
