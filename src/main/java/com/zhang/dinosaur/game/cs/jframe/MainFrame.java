@@ -68,17 +68,9 @@ public class MainFrame extends JFrame {
             setPreferredSize(new Dimension(1200,800));
             setLocationRelativeTo(null);
         }
-        //用于debug
-        {
-//            contentPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-//                mainLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//                mainRightPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//                    mainPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
-//                    southTabPane.setBorder(BorderFactory.createLineBorder(Color.RED));
-        }
 
         {
-          //左侧添加区域
+          //todo 左侧添加区域 mainLeftPanel.add
         }
 
         {
