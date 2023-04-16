@@ -6,3 +6,5 @@
 6/ add utilities for bitSet
 7/ openwrt build and filter AD
 8/ add dinosaur-egg
+9/ add Miglayout whitepaper http://www.miglayout.com/whitepaper.html
+10/ add Miglayout cheatsheet http://www.miglayout.com/cheatsheet.html
