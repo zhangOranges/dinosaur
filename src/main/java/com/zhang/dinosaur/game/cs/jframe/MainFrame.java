@@ -1,6 +1,7 @@
 package com.zhang.dinosaur.game.cs.jframe;
 
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.dapter.windowClosingAdapter;
 import com.zhang.dinosaur.game.cs.jpanel.*;
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import net.miginfocom.swing.MigLayout;
@@ -55,14 +56,7 @@ public class MainFrame extends JFrame {
         super("MainFrame view");
         {
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-            addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    if(JOptionPane.showConfirmDialog(null,"close?","Tip",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_NO_OPTION){
-                        System.exit(0);
-                    }
-                }
-            });
+            addWindowListener(new windowClosingAdapter());
 //            setResizable(false);
             setSize(1200,800);
             setPreferredSize(new Dimension(1200,800));
