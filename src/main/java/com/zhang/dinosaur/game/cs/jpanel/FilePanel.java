@@ -3,6 +3,7 @@ package com.zhang.dinosaur.game.cs.jpanel;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.context.GContext;
 import com.zhang.dinosaur.game.cs.compone.CsTree;
+import com.zhang.dinosaur.game.cs.compone.JTextFieldHint;
 import com.zhang.dinosaur.game.cs.event.ConnectionSucceedEvent;
 import com.zhang.dinosaur.game.cs.event.TreeClickedEvent;
 import com.zhang.dinosaur.game.cs.listener.ConnectionSucceedEventListener;
@@ -27,8 +28,8 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
     public FilePanel() {
         super(new MigLayout("wrap","grow,fill","[grow 5,fill][grow 95,fill]"));
         JPanel top = new JPanel(new MigLayout("","[grow 80,fill][grow 10,fill][grow 10,fill]"));
-        top.add(new JTextField("flied"));
-        Button b1 = new Button("b1");
+        top.add(new JTextFieldHint("请输入文本"));
+        Button b1 = new Button("模拟加载远程的文件夹列表");
         b1.addActionListener((t)->{
             GContextEventBus.post(new ConnectionSucceedEvent());
             log.debug("send ConnectionSucceedEvent");
@@ -37,7 +38,6 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
         top.add(new Button("b2"));
         add(top);
         JPanel context = new JPanel(new MigLayout("insets 0 0 0 0","[grow,fill]","grow,fill"));
-        context.setBorder(BorderFactory.createLineBorder(Color.cyan));
 
 
 
@@ -74,7 +74,6 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, left, right);
         splitPane.setDividerLocation(200);
 //        splitPane.setResizeWeight(0.3);
-        splitPane.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         context.add(splitPane);
 
@@ -88,12 +87,15 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
 
     @Override
     public void action(ConnectionSucceedEvent o) {
-
         MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);
         MutableTreeNode mnt = new DefaultMutableTreeNode("mnt",false);
 
         root.add(usr);
         root.add(mnt);
+        for (int i = 0; i < 20; i++) {
+            root.add(new DefaultMutableTreeNode("test"+i,false));
+        }
+
         tree1 = new CsTree(root);
         tree1.addMouseListener(new MouseAdapter() {
             @Override
