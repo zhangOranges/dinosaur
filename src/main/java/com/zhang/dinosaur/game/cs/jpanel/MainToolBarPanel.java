@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.zhang.dinosaur.game.cs.compone.MainToolBarTextArea;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;

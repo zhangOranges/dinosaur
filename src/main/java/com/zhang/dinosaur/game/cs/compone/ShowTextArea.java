@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game.cs.jpanel;
+package com.zhang.dinosaur.game.cs.compone;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;

@@ -1,4 +1,4 @@
-package com.zhang.dinosaur.game.cs.jpanel;
+package com.zhang.dinosaur.game.cs.compone;
 
 import com.zhang.dinosaur.game.cs.dapter.TextAreaToJTextPanelKeyAdapter;
 import lombok.extern.slf4j.Slf4j;

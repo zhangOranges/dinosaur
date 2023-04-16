@@ -2,6 +2,8 @@ package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.compone.InputTextArea;
+import com.zhang.dinosaur.game.cs.compone.ShowTextArea;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;

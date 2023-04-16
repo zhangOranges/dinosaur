@@ -1,8 +1,8 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
-import com.zhang.dinosaur.game.context.GContext;
 import com.zhang.dinosaur.game.cs.compone.CsTree;
+import com.zhang.dinosaur.game.cs.compone.FileTable;
 import com.zhang.dinosaur.game.cs.compone.JTextFieldHint;
 import com.zhang.dinosaur.game.cs.event.ConnectionSucceedEvent;
 import com.zhang.dinosaur.game.cs.event.TreeClickedEvent;
@@ -13,12 +13,10 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 @Slf4j
 public class FilePanel extends JPanel implements ConnectionSucceedEventListener {
     private DefaultMutableTreeNode root =
