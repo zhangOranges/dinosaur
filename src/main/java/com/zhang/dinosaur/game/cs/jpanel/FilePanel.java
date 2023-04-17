@@ -19,7 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @Slf4j
-public class FilePanel extends JPanel implements ConnectionSucceedEventListener {
+public class FilePanel extends JPanel implements ConnectionSucceedEventListener<LoadingRemoteDirEvent> {
     private DefaultMutableTreeNode root =
             new DefaultMutableTreeNode("/");
     private  JTree tree1 = null;
@@ -85,7 +85,7 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
     }
 
     @Override
-    public void action(ConnectionSucceedEvent o) {
+    public void action(LoadingRemoteDirEvent o) {
         if (o instanceof LoadingRemoteDirEvent){
             MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);
             MutableTreeNode mnt = new DefaultMutableTreeNode("mnt",false);
