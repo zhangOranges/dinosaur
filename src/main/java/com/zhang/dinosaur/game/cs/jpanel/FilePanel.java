@@ -5,6 +5,7 @@ import com.zhang.dinosaur.game.cs.compone.CsTree;
 import com.zhang.dinosaur.game.cs.compone.FileTable;
 import com.zhang.dinosaur.game.cs.compone.JTextFieldHint;
 import com.zhang.dinosaur.game.cs.event.ConnectionSucceedEvent;
+import com.zhang.dinosaur.game.cs.event.LoadingRemoteDirEvent;
 import com.zhang.dinosaur.game.cs.event.TreeClickedEvent;
 import com.zhang.dinosaur.game.cs.listener.ConnectionSucceedEventListener;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
         top.add(new JTextFieldHint("请输入文本"));
         Button b1 = new Button("模拟加载远程的文件夹列表");
         b1.addActionListener((t)->{
-            GContextEventBus.post(new ConnectionSucceedEvent());
+            GContextEventBus.post(new LoadingRemoteDirEvent());
             log.debug("send ConnectionSucceedEvent");
         });
         top.add(b1);
@@ -85,41 +86,41 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener 
 
     @Override
     public void action(ConnectionSucceedEvent o) {
-        MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);
-        MutableTreeNode mnt = new DefaultMutableTreeNode("mnt",false);
+        if (o instanceof LoadingRemoteDirEvent){
+            MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);
+            MutableTreeNode mnt = new DefaultMutableTreeNode("mnt",false);
 
-        root.add(usr);
-        root.add(mnt);
-        for (int i = 0; i < 20; i++) {
-            root.add(new DefaultMutableTreeNode("test"+i,false));
-        }
+            root.add(usr);
+            root.add(mnt);
+            for (int i = 0; i < 20; i++) {
+                root.add(new DefaultMutableTreeNode("test"+i,false));
+            }
 
-        tree1 = new CsTree(root);
-        tree1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1) {
-                    DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
-                    if (node == null) return;
-                    String path = (String) node.getUserObject();
-                    DefaultMutableTreeNode parent = (DefaultMutableTreeNode) node.getParent();
-                    for(;;){
-                        if (parent == null){
-                            break;
+            tree1 = new CsTree(root);
+            tree1.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 1) {
+                        DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
+                        if (node == null) return;
+                        String path = (String) node.getUserObject();
+                        DefaultMutableTreeNode parent = (DefaultMutableTreeNode) node.getParent();
+                        for(;;){
+                            if (parent == null){
+                                break;
+                            }
+                            path =   parent.getUserObject() + path;
+                            parent = (DefaultMutableTreeNode)parent.getParent();
                         }
-                        path =   parent.getUserObject() + path;
-                        parent = (DefaultMutableTreeNode)parent.getParent();
+
+                        //触发TreeClickedEvent事件    path为 去查看的远程服务器上的文件夹
+                        GContextEventBus.post(new TreeClickedEvent(path+""));
+
                     }
 
-                    //触发TreeClickedEvent事件    path为 去查看的远程服务器上的文件夹
-                    GContextEventBus.post(new TreeClickedEvent(path+""));
-
                 }
-
-            }
-        });
-        left.setViewportView(tree1);
-
-
+            });
+            left.setViewportView(tree1);
+        }
     }
 }

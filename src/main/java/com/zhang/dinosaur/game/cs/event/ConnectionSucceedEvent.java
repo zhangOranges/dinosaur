@@ -1,4 +1,7 @@
 package com.zhang.dinosaur.game.cs.event;
 
-public class ConnectionSucceedEvent implements EventObject{
+/**
+ * connectionSuccessEvent
+ */
+public  interface ConnectionSucceedEvent extends EventObject{
 }
