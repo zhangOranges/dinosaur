@@ -8,6 +8,5 @@ import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
  */
 public interface TextInputEventListener  extends EventListener {
 
-    @Subscribe
     public void textOut(ShowTextAddContentEvent text);
 }

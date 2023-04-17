@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.compone;
 
+import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
 import com.zhang.dinosaur.game.cs.event.FocusEvent;
@@ -40,6 +41,7 @@ public class ShowTextArea extends JTextArea implements TextInputEventListener {
     }
 
     @Override
+    @Subscribe
     public void textOut(ShowTextAddContentEvent e) {
         String text = e.getText();
         Document document = getDocument();

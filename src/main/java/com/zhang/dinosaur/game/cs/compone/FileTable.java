@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.compone;
 
+import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.event.TreeClickedEvent;
 import com.zhang.dinosaur.game.cs.listener.TreeClickedListener;
@@ -22,6 +23,7 @@ public class FileTable extends JTable implements TreeClickedListener {
     }
 
     @Override
+    @Subscribe
     public void action(TreeClickedEvent e) {
         String path = e.getPath();
         log.debug("点击的path  = {}",path);

@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
+import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsTree;
 import com.zhang.dinosaur.game.cs.compone.FileTable;
@@ -85,6 +86,7 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener<
     }
 
     @Override
+    @Subscribe
     public void action(LoadingRemoteDirEvent o) {
         if (o instanceof LoadingRemoteDirEvent){
             MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);

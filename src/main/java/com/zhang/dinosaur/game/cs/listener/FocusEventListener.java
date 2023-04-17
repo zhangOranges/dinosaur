@@ -7,6 +7,5 @@ import com.zhang.dinosaur.game.cs.event.FocusEvent;
  * 聚焦事件监听接口
  */
 public interface FocusEventListener extends EventListener{
-    @Subscribe
     public void action(FocusEvent e);
 }

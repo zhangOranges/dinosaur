@@ -1,5 +1,6 @@
 package com.zhang.dinosaur.game.cs.compone;
 
+import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
 import com.zhang.dinosaur.game.cs.event.FocusEvent;
@@ -35,6 +36,7 @@ public class InputTextArea extends JTextArea implements FocusEventListener{
 
 
     @Override
+    @Subscribe
     public void action(FocusEvent e) {
         grabFocus();
     }
