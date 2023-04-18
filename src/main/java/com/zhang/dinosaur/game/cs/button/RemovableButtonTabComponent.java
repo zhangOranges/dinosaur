@@ -1,6 +1,8 @@
 package com.zhang.dinosaur.game.cs.button;
 
+import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.event.IndexChangeEvent;
 import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
@@ -112,7 +114,7 @@ public class RemovableButtonTabComponent extends JPanel {
                     pane.setSelectedComponent(pane.getComponentAt(defTabIndex));
                 }
 
-
+                GContextEventBus.post(new IndexChangeEvent(pane.getSelectedIndex()));
             }
         }
 
