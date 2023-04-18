@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
-import com.zhang.dinosaur.common.ThreadUtils;
 import com.zhang.dinosaur.game.cs.compone.CsCaret;
 
 import javax.swing.*;

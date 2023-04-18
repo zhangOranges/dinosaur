@@ -1,6 +1,6 @@
 package com.zhang.dinosaur.game.context;
 
-import com.zhang.dinosaur.common.ThreadUtils;
+import com.zhang.dinosaur.game.common.ThreadUtils;
 
 /**
  * 全局的上下文

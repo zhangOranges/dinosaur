@@ -1,6 +1,5 @@
 package com.zhang.dinosaur.game.cs.jframe;
 
-import com.zhang.dinosaur.common.ThreadUtils;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
