@@ -12,12 +12,14 @@ import java.awt.*;
 public class LContext {
     public static final String LEFT_SYNC = "同步状态";
     public static final String LEFT_IP = "IP  -";
+    public static final String LEFT_IP_CONSTANT = "IP";
     public static final String LEFT_SYSTEM_INFO = "系统信息";
     public static final String LEFT_RUN_INFO = "运行  -";
     public static final String LEFT_LOAD_INFO = "负载  -";
     public static final String LEFT_CPU_INFO = "CPU";
     public static final String LEFT_MEN_INFO = "内存";
     public static final String LEFT_EXG_INFO = "交换";
+    public static final String LEFT_SPLIT = "  ";
 
     /**
      * 同步状态
@@ -53,6 +55,12 @@ public class LContext {
 
     public static JLabel getExgJLabel(){
         return getJLabel(LContext.LEFT_EXG_INFO);
+    }
+
+    public static JLabel getSystemLabel(){
+        JLabel jLabel = new JLabel(LEFT_SYSTEM_INFO,SwingConstants.CENTER);
+        jLabel.setFont(new Font("verdana", Font.BOLD, 12));
+        return jLabel;
     }
 
     /**
