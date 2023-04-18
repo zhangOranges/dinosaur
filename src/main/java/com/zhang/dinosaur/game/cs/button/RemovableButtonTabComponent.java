@@ -2,6 +2,7 @@ package com.zhang.dinosaur.game.cs.button;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
 import com.zhang.dinosaur.game.cs.event.IndexChangeEvent;
 import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import lombok.extern.slf4j.Slf4j;
@@ -99,7 +100,8 @@ public class RemovableButtonTabComponent extends JPanel {
                     defaultPanel.setTitle(GContext._default_title);
                     defaultPanel.setPanel(pane);
                     pane.setComponentAt(i,defaultPanel);
-
+                    //最后一个标签页,清除ip信息
+                    GContextEventBus.post(new LoadingIpEvent());
                 }
 
                 //
