@@ -4,6 +4,7 @@ import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import com.zhang.dinosaur.game.cs.event.IndexChangeEvent;
+import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
 import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import com.zhang.dinosaur.game.cs.listener.IndexChangeEventListener;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,7 @@ public class RightPanelTabChangeListener implements ChangeListener, IndexChangeE
                 if (sc instanceof RemovableButtonTabComponent){
                     Map<String, String> map = ((RemovableButtonTabComponent) sc).getMap();
                     log.debug("当前切换到的tab的属性 = {} ",map);
+                    GContextEventBus.post(new LoadingIpEvent(map.get("host")));
                 }
                 String title = pane.getTitleAt(selectedIndex);
                 //add button
@@ -64,6 +66,8 @@ public class RightPanelTabChangeListener implements ChangeListener, IndexChangeE
                     pane.setSelectedIndex(idx);
                     count++;
                     lastIndex = idx;
+                    //新建tab时，清除ip信息
+                    GContextEventBus.post(new LoadingIpEvent());
                 }else if("".equals(title)){
                     //open folder button
                     log.debug("click open folder selectIndex = {} , lastIndex = {}",selectedIndex,lastIndex);

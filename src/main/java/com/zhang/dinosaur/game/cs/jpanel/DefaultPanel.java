@@ -5,6 +5,7 @@ import com.zhang.dinosaur.game.context.GContext;
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import com.zhang.dinosaur.game.cs.compone.InputTextArea;
 import com.zhang.dinosaur.game.cs.compone.ShowTextArea;
+import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
@@ -112,6 +113,8 @@ public class DefaultPanel extends JPanel {
                     Map<String, String> map = ((RemovableButtonTabComponent) tabComponentAt).getMap();
                     map.put("host",valueAt+"");
                 }
+                //双击后触发IP更新事件
+                GContextEventBus.post(new LoadingIpEvent(valueAt+""));
             }
         });
 

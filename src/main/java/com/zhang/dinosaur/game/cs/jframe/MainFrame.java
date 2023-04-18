@@ -29,6 +29,16 @@ public class MainFrame extends JFrame {
      */
     private final JTabbedPane pane = new RightTabbedPane();
 
+    /**
+     * 左侧--ip信息
+     */
+    private final IpInfoPanel ipInfoPanel = new IpInfoPanel();
+
+    /**
+     * 左侧--服务器基本信息
+     */
+    private final MainLeftServeInfoPanel serverInfoPanel = new MainLeftServeInfoPanel();
+
     public MainFrame(){
         super("MainFrame view");
         {
@@ -42,6 +52,12 @@ public class MainFrame extends JFrame {
 
         {
           //todo 左侧添加区域 mainLeftPanel.add
+            //ip
+            mainLeftPanel.add(ipInfoPanel);
+            //系统信息标题
+            mainLeftPanel.add(serverInfoPanel.getSystemConstantPanel());
+            //具体系统信息
+            mainLeftPanel.add(serverInfoPanel);
         }
 
         {
