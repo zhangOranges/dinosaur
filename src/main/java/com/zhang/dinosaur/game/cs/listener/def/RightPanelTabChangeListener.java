@@ -36,7 +36,10 @@ public class RightPanelTabChangeListener implements ChangeListener, IndexChangeE
             ignore=true;
             try {
                 int selectedIndex = pane.getSelectedIndex();
-
+                if (selectedIndex==-1){
+                    pane.setSelectedIndex(lastIndex);
+                    return;
+                }
                 String title = pane.getTitleAt(selectedIndex);
                 //add button
                 if ("+".equals(title)){

@@ -1,11 +1,11 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
+import com.zhang.dinosaur.game.cs.dapter.OpenFolderMouseAdapter;
 import com.zhang.dinosaur.game.cs.listener.def.RightPanelTabChangeListener;
 
 import javax.swing.*;
 
-import java.awt.*;
 
 import static com.zhang.dinosaur.game.context.GContext._default_title;
 
@@ -23,8 +23,8 @@ public class RightTabbedPane extends JTabbedPane {
         setTabComponentAt(1,new RemovableButtonTabComponent(this));
         setSelectedIndex(1);
         add("+",new JPanel());
-
         getModel().addChangeListener(new RightPanelTabChangeListener(this));
+        addMouseListener(new OpenFolderMouseAdapter(this));
 
     }
 }
