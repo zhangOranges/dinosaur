@@ -51,6 +51,7 @@ public class RemovableButtonTabComponent extends JPanel {
     }
 
     private class TabButton extends JButton implements ActionListener {
+        private int defTabIndex = 1;
         public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
@@ -75,13 +76,13 @@ public class RemovableButtonTabComponent extends JPanel {
             int i = pane.indexOfTabComponent(RemovableButtonTabComponent.this);
             //one remove tab
             if (i != -1) {
-                int initTab = 2;
+                int initTab = 3;
                 int tabCount = pane.getTabCount();
 
 
 
-                //if only two tab and i eq 0   only change title
-                if (tabCount>initTab|| i!=0){
+                //if only three tab and i eq 1   only change title
+                if (tabCount>initTab|| i!=defTabIndex){
                     pane.remove(i);
                 }else{
                     pane.setTitleAt(i,GContext._default_title);
@@ -100,15 +101,15 @@ public class RemovableButtonTabComponent extends JPanel {
                     defaultPanel.setTitle(GContext._default_title);
                     defaultPanel.setPanel(pane);
 
-                    pane.setSelectedIndex(0);
-                    pane.insertTab(GContext._default_title,null,defaultPanel,null,0);
-                    pane.setTabComponentAt(0,new RemovableButtonTabComponent(pane));
+                    pane.setSelectedIndex(defTabIndex);
+                    pane.insertTab(GContext._default_title,null,defaultPanel,null,defTabIndex);
+                    pane.setTabComponentAt(defTabIndex,new RemovableButtonTabComponent(pane));
 
                 }else if(tabCount > initTab){
                     int selectedIndex = pane.getSelectedIndex();
                     pane.setSelectedComponent(pane.getComponentAt(selectedIndex));
                 }else{
-                    pane.setSelectedComponent(pane.getComponentAt(0));
+                    pane.setSelectedComponent(pane.getComponentAt(defTabIndex));
                 }
 
 

@@ -15,13 +15,16 @@ import static com.zhang.dinosaur.game.context.GContext._default_title;
 public class RightTabbedPane extends JTabbedPane {
     private JPanel defaultPanel = new DefaultPanel();
     public RightTabbedPane() {
+        addTab("",new ImageIcon(getClass().getResource("/img/open_folder.png")),null);
         //添加默认的title panel
         add(_default_title, defaultPanel);
         ((DefaultPanel)defaultPanel).setPanel(this);
         ((DefaultPanel)defaultPanel).setTitle(_default_title);
-        setTabComponentAt(0,new RemovableButtonTabComponent(this));
+        setTabComponentAt(1,new RemovableButtonTabComponent(this));
+        setSelectedIndex(1);
         add("+",new JPanel());
 
         getModel().addChangeListener(new RightPanelTabChangeListener(this));
+
     }
 }
