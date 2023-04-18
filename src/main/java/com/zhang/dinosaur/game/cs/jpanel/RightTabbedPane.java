@@ -5,6 +5,8 @@ import com.zhang.dinosaur.game.cs.listener.def.RightPanelTabChangeListener;
 
 import javax.swing.*;
 
+import java.awt.*;
+
 import static com.zhang.dinosaur.game.context.GContext._default_title;
 
 /**

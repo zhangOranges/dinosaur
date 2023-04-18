@@ -51,8 +51,8 @@ public class MainFrame extends JFrame {
 
         {
             //左右panel放入   tabbedPane  再放入contentPanel
-            JTabbedPane tabbedPane = new ContentTabbedPane(mainLeftPanel,mainRightPanel);
-            contentPanel.add(tabbedPane);
+            JSplitPane splitPane = new CsJSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, mainLeftPanel, mainRightPanel);
+            contentPanel.add(splitPane);
         }
 
         setContentPane(contentPanel);

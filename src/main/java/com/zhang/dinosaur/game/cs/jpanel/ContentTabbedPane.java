@@ -15,6 +15,6 @@ public class ContentTabbedPane extends JTabbedPane {
         splitPane.setDividerLocation(150);
         splitPane.setOpaque(false);
         splitPane.setBorder(null);
-        addTab("基本信息",splitPane);
+        addTab("",splitPane);
     }
 }
