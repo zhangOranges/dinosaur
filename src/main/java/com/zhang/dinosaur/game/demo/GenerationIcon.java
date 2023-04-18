@@ -14,8 +14,8 @@ public class GenerationIcon {
     public static void main(String[] args) throws MalformedURLException {
         int outw = 17;
         int outh = 17;
-        String inFilePath = "file:/home/orange/Downloads/open_folder.png";
-        String outFilePath = "/usr/local/zhang/learn/open_folder.png";
+        String inFilePath = "file:/home/orange/Downloads/folder.png";
+        String outFilePath = "/usr/local/zhang/learn/add_connect.png";
         ImageIcon icon = new ImageIcon(new URL(inFilePath));
         Image image = icon.getImage();
         Image newimg = image.getScaledInstance(outw, outh, java.awt.Image.SCALE_SMOOTH);

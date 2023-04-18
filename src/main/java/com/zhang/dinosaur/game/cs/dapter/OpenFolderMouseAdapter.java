@@ -1,6 +1,6 @@
 package com.zhang.dinosaur.game.cs.dapter;
 
-import com.zhang.dinosaur.game.cs.jframe.NewConnectJFrame;
+import com.zhang.dinosaur.game.cs.jframe.ShowConnectListJFrame;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -18,7 +18,7 @@ public class OpenFolderMouseAdapter extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1 && jTabbedPane.getSelectedIndex() == 0) {
             jTabbedPane.setSelectedIndex(-1);
-            JFrame jFrame = new NewConnectJFrame();
+            JFrame jFrame = new ShowConnectListJFrame();
             jFrame.setVisible(true);
         }else{
             super.mouseClicked(e);

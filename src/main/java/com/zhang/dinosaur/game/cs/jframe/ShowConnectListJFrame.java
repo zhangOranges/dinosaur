@@ -7,10 +7,10 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 
-public class NewConnectJFrame extends JFrame {
-    public NewConnectJFrame() throws HeadlessException {
+public class ShowConnectListJFrame extends JFrame {
+    public ShowConnectListJFrame() throws HeadlessException {
         super();
-        JPanel connectPanel = new JPanel(new MigLayout("insets 0 0 0 0,wrap","grow,fill","grow,fill"));
+        JPanel connectPanel = new JPanel(new MigLayout("insets 0 0 0 0,wrap","grow,fill","[grow 3,fill]0[grow 97,fill]"));
 
         connectPanel.add(new ConnectToolButtonPanel());
         connectPanel.add(new ConnectListPanel());
