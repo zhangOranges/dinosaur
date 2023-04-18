@@ -2,6 +2,7 @@ package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.context.GContext;
+import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import com.zhang.dinosaur.game.cs.compone.InputTextArea;
 import com.zhang.dinosaur.game.cs.compone.ShowTextArea;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
@@ -13,6 +14,7 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 
@@ -65,7 +67,7 @@ public class DefaultPanel extends JPanel {
                 super.mouseClicked(e);
                 int selectedRow = jTable.getSelectedRow();
                 TableModel model = jTable.getModel();
-                Object valueAt = model.getValueAt(selectedRow, 3);
+                Object valueAt = model.getValueAt(selectedRow, 0);
                 log.info("click row {}",valueAt);
                 //通过点击  去connect host
                 int i = jTabbedPane.indexOfTab(title);
@@ -102,6 +104,14 @@ public class DefaultPanel extends JPanel {
 
                 mainRightPanel.add(splitPane);
                 DefaultPanel.this.jTabbedPane.setComponentAt(i,mainRightPanel);
+                DefaultPanel.this.jTabbedPane.setTitleAt(i,valueAt+"");
+
+                //add properties
+                Component tabComponentAt = DefaultPanel.this.jTabbedPane.getTabComponentAt(i);
+                if (tabComponentAt instanceof RemovableButtonTabComponent){
+                    Map<String, String> map = ((RemovableButtonTabComponent) tabComponentAt).getMap();
+                    map.put("host",valueAt+"");
+                }
             }
         });
 

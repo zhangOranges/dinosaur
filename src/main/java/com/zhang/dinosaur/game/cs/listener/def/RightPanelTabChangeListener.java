@@ -12,6 +12,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import java.awt.*;
+import java.util.Map;
+
 import static com.zhang.dinosaur.game.context.GContext._prefix_title;
 
 /**
@@ -39,6 +42,11 @@ public class RightPanelTabChangeListener implements ChangeListener, IndexChangeE
                 if (selectedIndex==-1){
                     pane.setSelectedIndex(lastIndex);
                     return;
+                }
+                Component sc = pane.getTabComponentAt(selectedIndex);
+                if (sc instanceof RemovableButtonTabComponent){
+                    Map<String, String> map = ((RemovableButtonTabComponent) sc).getMap();
+                    log.debug("当前切换到的tab的属性 = {} ",map);
                 }
                 String title = pane.getTitleAt(selectedIndex);
                 //add button

@@ -12,6 +12,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Component to be used as tabComponent;
@@ -21,7 +23,8 @@ import java.awt.event.*;
 @Slf4j
 public class RemovableButtonTabComponent extends JPanel {
     private final JTabbedPane pane;
-
+    //tab  properties
+    private Map<String,String> map = new HashMap<>();
     public RemovableButtonTabComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
         super(new MigLayout("left,insets 0 0 0 0"));
@@ -50,6 +53,10 @@ public class RemovableButtonTabComponent extends JPanel {
         add(button);
         //add more space to the top of the component
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
+    }
+
+    public Map<String, String> getMap() {
+        return map;
     }
 
     private class TabButton extends JButton implements ActionListener {
