@@ -38,6 +38,7 @@ public class RightPanelTabChangeListener implements ChangeListener, IndexChangeE
                 int selectedIndex = pane.getSelectedIndex();
 
                 String title = pane.getTitleAt(selectedIndex);
+                //add button
                 if ("+".equals(title)){
                     int tabCount = pane.getTabCount();
                     int idx = tabCount - 1;
@@ -53,6 +54,7 @@ public class RightPanelTabChangeListener implements ChangeListener, IndexChangeE
                     count++;
                     lastIndex = idx;
                 }else if("".equals(title)){
+                    //open folder button
                     log.debug("click open folder selectIndex = {} , lastIndex = {}",selectedIndex,lastIndex);
                 }
             }finally {
