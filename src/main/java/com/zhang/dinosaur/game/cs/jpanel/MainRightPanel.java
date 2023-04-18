@@ -7,6 +7,6 @@ import java.awt.*;
 
 public class MainRightPanel extends JPanel {
     public MainRightPanel() {
-        super(new MigLayout("flowy,fill","[grow,fill]","[grow,fill]"));
+        super(new MigLayout("insets 0 0 0 0,flowy,fill","[grow,fill]","[grow,fill]"));
     }
 }

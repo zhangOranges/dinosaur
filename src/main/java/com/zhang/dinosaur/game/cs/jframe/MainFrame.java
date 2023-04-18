@@ -35,8 +35,8 @@ public class MainFrame extends JFrame {
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             addWindowListener(new windowClosingAdapter());
 //            setResizable(false);
-            setSize(1200,800);
-            setPreferredSize(new Dimension(1200,800));
+            setSize(1200,840);
+            setPreferredSize(new Dimension(1200,840));
             setLocationRelativeTo(null);
         }
 
