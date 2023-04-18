@@ -59,7 +59,7 @@ public class LContext {
 
     public static JLabel getSystemLabel(){
         JLabel jLabel = new JLabel(LEFT_SYSTEM_INFO,SwingConstants.CENTER);
-        jLabel.setFont(new Font("verdana", Font.BOLD, 12));
+        jLabel.setFont(new Font("微软雅黑", Font.BOLD, 12));
         return jLabel;
     }
 
@@ -70,7 +70,7 @@ public class LContext {
      */
     private static JLabel getJLabel(String label){
         JLabel jLabel = new JLabel(label);
-        jLabel.setFont(new Font("verdana", Font.PLAIN, 12));
+        jLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
         return jLabel;
     }
 }
