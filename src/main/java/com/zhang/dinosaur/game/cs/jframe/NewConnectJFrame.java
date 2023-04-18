@@ -1,7 +1,7 @@
 package com.zhang.dinosaur.game.cs.jframe;
 
 import com.zhang.dinosaur.game.cs.jpanel.ConnectListPanel;
-import com.zhang.dinosaur.game.cs.jpanel.ConnectToolBarPanel;
+import com.zhang.dinosaur.game.cs.jpanel.ConnectToolButtonPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class NewConnectJFrame extends JFrame {
         super();
         JPanel connectPanel = new JPanel(new MigLayout("insets 0 0 0 0,wrap","grow,fill","grow,fill"));
 
-        connectPanel.add(new ConnectToolBarPanel());
+        connectPanel.add(new ConnectToolButtonPanel());
         connectPanel.add(new ConnectListPanel());
 
 
