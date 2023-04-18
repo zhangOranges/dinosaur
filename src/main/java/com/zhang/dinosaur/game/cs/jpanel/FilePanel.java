@@ -2,6 +2,7 @@ package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.google.common.eventbus.Subscribe;
 import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.cs.button.FreshJButton;
 import com.zhang.dinosaur.game.cs.compone.CsTree;
 import com.zhang.dinosaur.game.cs.compone.FileTable;
 import com.zhang.dinosaur.game.cs.compone.JTextFieldHint;
@@ -15,6 +16,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.VariableHeightLayoutCache;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,15 +29,11 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener<
     private  JScrollPane left = new JScrollPane();
     public FilePanel() {
         super(new MigLayout("wrap","grow,fill","[grow 5,fill][grow 95,fill]"));
-        JPanel top = new JPanel(new MigLayout("","[grow 80,fill][grow 10,fill][grow 10,fill]"));
+        JPanel top = new JPanel(new MigLayout("","[grow 90,fill][grow 10,fill]", ""));
         top.add(new JTextFieldHint("请输入文本"));
-        Button b1 = new Button("模拟加载远程的文件夹列表");
-        b1.addActionListener((t)->{
-            GContextEventBus.post(new LoadingRemoteDirEvent());
-            log.debug("send ConnectionSucceedEvent");
-        });
-        top.add(b1);
-        top.add(new Button("b2"));
+
+
+        top.add(new FileButtonsPanel());
         add(top);
         JPanel context = new JPanel(new MigLayout("insets 0 0 0 0","[grow,fill]","grow,fill"));
 
