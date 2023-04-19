@@ -72,7 +72,7 @@ public class DefaultPanel extends JPanel {
                 log.info("click row {}",valueAt);
                 //通过点击  去connect host
                 int i = jTabbedPane.indexOfTab(title);
-                JPanel mainRightPanel = new JPanel(new MigLayout("wrap,fill","[grow,fill]","[grow 75,fill]0[grow 25,fill]"));
+                JPanel mainRightPanel = new JPanel(new MigLayout("insets 0 0 0 0,wrap,fill","[grow,fill]","[grow,fill]"));
 
                 MainPanel mainPanel = new MainPanel();
 
@@ -95,15 +95,15 @@ public class DefaultPanel extends JPanel {
                 //add text
                 mainPanel.add(new MainToolBarPanel());
 
-                mainRightPanel.add(mainPanel);
                 JTabbedPane jTabbedPane = new JTabbedPane();
                 jTabbedPane.add("file",new FilePanel());
 
                 JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, mainPanel, jTabbedPane);
-                splitPane.setDividerLocation(400);
-                splitPane.setResizeWeight(0.6);
+                splitPane.setDividerLocation(500);
+
 
                 mainRightPanel.add(splitPane);
+
                 DefaultPanel.this.jTabbedPane.setComponentAt(i,mainRightPanel);
                 DefaultPanel.this.jTabbedPane.setTitleAt(i,valueAt+"");
 

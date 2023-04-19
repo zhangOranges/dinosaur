@@ -7,7 +7,7 @@ public class RoundedJScrollPane extends JScrollPane {
     public RoundedJScrollPane(Component view) {
         super(view);
         setBorder(BorderFactory.createEmptyBorder());
-        setBackground(new Color(0,0,0,50));
+        setBackground(new Color(0,0,0,100));
     }
 
     @Override

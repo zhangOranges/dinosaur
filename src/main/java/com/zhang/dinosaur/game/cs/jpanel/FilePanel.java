@@ -28,15 +28,15 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener<
     private  JTree tree1 = null;
     private  JScrollPane left = new JScrollPane();
     public FilePanel() {
-        super(new MigLayout("wrap","grow,fill","[grow 5,fill][grow 95,fill]"));
-        JPanel top = new JPanel(new MigLayout("","[grow 90,fill][grow 10,fill]", ""));
+        super(new MigLayout("insets 0 0 0 0,wrap","grow,fill","[grow 5,fill]0[grow 95,fill]"));
+
+        JPanel top = new JPanel(new MigLayout("insets 0 0 0 0","[grow 90,fill][grow 10,fill]", ""));
         top.add(new JTextFieldHint("请输入文本"));
 
 
         top.add(new FileButtonsPanel());
         add(top);
         JPanel context = new JPanel(new MigLayout("insets 0 0 0 0","[grow,fill]","grow,fill"));
-
 
 
 

@@ -7,6 +7,7 @@ import com.zhang.dinosaur.game.cs.button.UploadJButton;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class FileButtonsPanel extends JPanel {
     public FileButtonsPanel() {

@@ -12,14 +12,13 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 public class MainToolBarPanel extends JPanel {
 
     public MainToolBarPanel() {
-        super(new MigLayout("insets 10 10 -20 0","[grow 80,fill][grow 20,fill]",""));
+        super(new MigLayout("insets 0 0 0 0","[grow 80,fill]-1[grow 20,fill]","grow,fill"));
         setOpaque(false);
 
 
         JScrollPane jScrollPane = new RoundedJScrollPane(new MainToolBarTextArea());
         jScrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane.setBackground(new Color(0,0,0,150));
 
         jScrollPane.getViewport().setOpaque(false);
         jScrollPane.setOpaque(false);
@@ -27,9 +26,9 @@ public class MainToolBarPanel extends JPanel {
 
         add(jScrollPane);
 
-        //func button ...
-        Button button = new Button("b1");
 
-        add(button);
+        add(new MainToolBarJButtonPanel());
+
+
     }
 }

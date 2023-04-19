@@ -18,7 +18,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class MainPanel extends JPanel {
     private Image img;
     public MainPanel() {
-        super(new MigLayout("ins 10 10 10 10,wrap","grow,fill","[grow 95,fill][grow 5,fill]"));
+        super(new MigLayout("ins 10 10 10 10,wrap","grow,fill","[grow 95,fill][]"));
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/img/default_bg.png"));
         img = imageIcon.getImage();
     }
