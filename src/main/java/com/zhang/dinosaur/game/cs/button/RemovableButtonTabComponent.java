@@ -1,16 +1,11 @@
 package com.zhang.dinosaur.game.cs.button;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
-import com.zhang.dinosaur.game.context.GContext;
-import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
-import com.zhang.dinosaur.game.cs.event.IndexChangeEvent;
 import com.zhang.dinosaur.game.cs.event.RightTabbedPaneClickRemoveEvent;
-import com.zhang.dinosaur.game.cs.jpanel.DefaultPanel;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
@@ -62,7 +57,6 @@ public class RemovableButtonTabComponent extends JPanel {
     }
 
     private class TabButton extends JButton implements ActionListener {
-        private int defTabIndex = 1;
         public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
@@ -84,48 +78,6 @@ public class RemovableButtonTabComponent extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-//            int i = pane.indexOfTabComponent(RemovableButtonTabComponent.this);
-//            //one remove tab
-//            if (i != -1) {
-//                int initTab = 3;
-//                int tabCount = pane.getTabCount();
-//
-//
-//
-//                //if only three tab and i eq 1   only change title
-//                if (tabCount>initTab|| i!=defTabIndex){
-//                    pane.remove(i);
-//                }else{
-//                    pane.setTitleAt(i,GContext._default_title);
-//                    DefaultPanel defaultPanel = new DefaultPanel();
-//                    defaultPanel.setTitle(GContext._default_title);
-//                    defaultPanel.setPanel(pane);
-//                    pane.setComponentAt(i,defaultPanel);
-//                    //最后一个标签页,清除ip信息
-//                    GContextEventBus.post(new LoadingIpEvent());
-//                }
-//
-//                //
-//                tabCount = pane.getTabCount();
-//                if (tabCount<initTab){
-////                    //con  init tab
-//                    DefaultPanel defaultPanel = new DefaultPanel();
-//                    defaultPanel.setTitle(GContext._default_title);
-//                    defaultPanel.setPanel(pane);
-//
-//                    pane.setSelectedIndex(defTabIndex);
-//                    pane.insertTab(GContext._default_title,null,defaultPanel,null,defTabIndex);
-//                    pane.setTabComponentAt(defTabIndex,new RemovableButtonTabComponent(pane));
-//
-//                }else if(tabCount > initTab){
-//                    int selectedIndex = pane.getSelectedIndex();
-//                    pane.setSelectedComponent(pane.getComponentAt(selectedIndex));
-//                }else{
-//                    pane.setSelectedComponent(pane.getComponentAt(defTabIndex));
-//                }
-//
-//                GContextEventBus.post(new IndexChangeEvent(pane.getSelectedIndex()));
-//            }
             GContextEventBus.post(new RightTabbedPaneClickRemoveEvent(RemovableButtonTabComponent.this));
         }
 
