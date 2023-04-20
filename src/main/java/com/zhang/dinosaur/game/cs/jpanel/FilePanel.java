@@ -6,6 +6,7 @@ import com.zhang.dinosaur.game.cs.button.FreshJButton;
 import com.zhang.dinosaur.game.cs.compone.CsTree;
 import com.zhang.dinosaur.game.cs.compone.FileTable;
 import com.zhang.dinosaur.game.cs.compone.JTextFieldHint;
+import com.zhang.dinosaur.game.cs.dapter.TreeClickedAdapter;
 import com.zhang.dinosaur.game.cs.event.ConnectionSucceedEvent;
 import com.zhang.dinosaur.game.cs.event.LoadingRemoteDirEvent;
 import com.zhang.dinosaur.game.cs.event.TreeClickedEvent;
@@ -15,6 +16,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.VariableHeightLayoutCache;
 import java.awt.*;
@@ -25,7 +27,8 @@ import java.awt.event.MouseEvent;
 public class FilePanel extends JPanel implements ConnectionSucceedEventListener<LoadingRemoteDirEvent> {
     private DefaultMutableTreeNode root =
             new DefaultMutableTreeNode("/");
-    private  JTree tree1 = null;
+    private DefaultTreeModel treeModel;
+    private  JTree tree = null;
     private  JScrollPane left = new JScrollPane();
     public FilePanel() {
         super(new MigLayout("insets 0 0 0 0,wrap","grow,fill","[grow 5,fill]0[grow 95,fill]"));
@@ -86,41 +89,24 @@ public class FilePanel extends JPanel implements ConnectionSucceedEventListener<
     @Override
     @Subscribe
     public void action(LoadingRemoteDirEvent o) {
-        if (o instanceof LoadingRemoteDirEvent){
-            MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);
-            MutableTreeNode mnt = new DefaultMutableTreeNode("mnt",false);
+            treeModel = new DefaultTreeModel(root);
+            createNode();
+            tree = new CsTree(treeModel);
+            tree.addMouseListener(new TreeClickedAdapter());
+            left.setViewportView(tree);
+    }
+    /**
+     * test data
+     */
+    private void createNode(){
+        MutableTreeNode usr = new DefaultMutableTreeNode("usr",false);
+        MutableTreeNode mnt = new DefaultMutableTreeNode("mnt",false);
 
-            root.add(usr);
-            root.add(mnt);
-            for (int i = 0; i < 20; i++) {
-                root.add(new DefaultMutableTreeNode("test"+i,false));
-            }
-
-            tree1 = new CsTree(root);
-            tree1.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 1) {
-                        DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
-                        if (node == null) return;
-                        String path = (String) node.getUserObject();
-                        DefaultMutableTreeNode parent = (DefaultMutableTreeNode) node.getParent();
-                        for(;;){
-                            if (parent == null){
-                                break;
-                            }
-                            path =   parent.getUserObject() + path;
-                            parent = (DefaultMutableTreeNode)parent.getParent();
-                        }
-
-                        //触发TreeClickedEvent事件    path为 去查看的远程服务器上的文件夹
-                        GContextEventBus.post(new TreeClickedEvent(path+""));
-
-                    }
-
-                }
-            });
-            left.setViewportView(tree1);
+        root.add(usr);
+        root.add(mnt);
+        for (int i = 0; i < 20; i++) {
+            root.add(new DefaultMutableTreeNode("test"+i,false));
         }
+
     }
 }
