@@ -1,11 +1,13 @@
 package com.zhang.dinosaur.game.cs.jpanel;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.common.ConnectProperties;
 import com.zhang.dinosaur.game.context.GContext;
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import com.zhang.dinosaur.game.cs.compone.InputTextArea;
 import com.zhang.dinosaur.game.cs.compone.ShowTextArea;
 import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
+import com.zhang.dinosaur.game.cs.event.RTPChangeSelectTabDefaultPanelEvent;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
@@ -70,51 +72,9 @@ public class DefaultPanel extends JPanel {
                 TableModel model = jTable.getModel();
                 Object valueAt = model.getValueAt(selectedRow, 0);
                 log.info("click row {}",valueAt);
-                //通过点击  去connect host
-                int i = jTabbedPane.indexOfTab(title);
-                JPanel mainRightPanel = new JPanel(new MigLayout("insets 0 0 0 0,wrap,fill","[grow,fill]","[grow,fill]"));
 
-                MainPanel mainPanel = new MainPanel();
-
-                JPanel mainPanel2 = new JPanel(new MigLayout("wrap,insets 0 0 0 0","grow,fill","[]0[]"));
-                mainPanel2.setOpaque(false);
-
-                JTextArea noEditTextArea = new ShowTextArea();
-
-
-
-                GContextEventBus.post(new ShowTextAddContentEvent("connect server...",null));
-                JTextArea jTextArea = new InputTextArea();
-
-                mainPanel2.add(noEditTextArea);
-                mainPanel2.add(jTextArea);
-                JScrollPane scrollPane = new MainJScrollPane(mainPanel2);
-
-                mainPanel.add(scrollPane);
-
-                //add text
-                mainPanel.add(new MainToolBarPanel());
-
-                JTabbedPane jTabbedPane = new JTabbedPane();
-                jTabbedPane.add("file",new FilePanel());
-
-                JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, mainPanel, jTabbedPane);
-                splitPane.setDividerLocation(500);
-
-
-                mainRightPanel.add(splitPane);
-
-                DefaultPanel.this.jTabbedPane.setComponentAt(i,mainRightPanel);
-                DefaultPanel.this.jTabbedPane.setTitleAt(i,valueAt+"");
-
-                //add properties
-                Component tabComponentAt = DefaultPanel.this.jTabbedPane.getTabComponentAt(i);
-                if (tabComponentAt instanceof RemovableButtonTabComponent){
-                    Map<String, String> map = ((RemovableButtonTabComponent) tabComponentAt).getMap();
-                    map.put("host",valueAt+"");
-                }
-                //双击后触发IP更新事件
-                GContextEventBus.post(new LoadingIpEvent(valueAt+""));
+                ConnectProperties connectProperties = new ConnectProperties().setAlias(valueAt +"");
+                GContextEventBus.post(new RTPChangeSelectTabDefaultPanelEvent(title,connectProperties));
             }
         });
 

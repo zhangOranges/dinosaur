@@ -1,6 +1,7 @@
 package com.zhang.dinosaur.game.cs.listener.def;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.common.ConnectProperties;
 import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
 import com.zhang.dinosaur.game.cs.event.RightTabbedPaneClickAddEvent;
@@ -39,9 +40,9 @@ public class RightPanelTabChangeListener implements ChangeListener {
                 }
                 Component sc = pane.getTabComponentAt(selectedIndex);
                 if (sc instanceof RemovableButtonTabComponent){
-                    Map<String, String> map = ((RemovableButtonTabComponent) sc).getMap();
-                    log.debug("当前切换到的tab的属性 = {} ",map);
-                    GContextEventBus.post(new LoadingIpEvent(map.get("host")));
+                    ConnectProperties cp = ((RemovableButtonTabComponent) sc).getConnectProperties();
+                    log.debug("当前切换到的tab的 connectProperties 属性 = {} ",cp);
+                    GContextEventBus.post(new LoadingIpEvent(cp.getAlias()));
                 }
                 String title = pane.getTitleAt(selectedIndex);
                 //add button

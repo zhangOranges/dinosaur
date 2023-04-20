@@ -1,6 +1,7 @@
 package com.zhang.dinosaur.game.cs.button;
 
 import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.common.ConnectProperties;
 import com.zhang.dinosaur.game.cs.event.RightTabbedPaneClickRemoveEvent;
 import lombok.extern.slf4j.Slf4j;
 import net.miginfocom.swing.MigLayout;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class RemovableButtonTabComponent extends JPanel {
     private final JTabbedPane pane;
     //tab  properties
-    private Map<String,String> map = new HashMap<>();
+    private ConnectProperties connectProperties = new ConnectProperties();
     public RemovableButtonTabComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
         super(new MigLayout("left,insets 0 0 0 0"));
@@ -52,8 +53,12 @@ public class RemovableButtonTabComponent extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
 
-    public Map<String, String> getMap() {
-        return map;
+    public ConnectProperties getConnectProperties() {
+        return connectProperties;
+    }
+
+    public void setConnectProperties(ConnectProperties connectProperties) {
+        this.connectProperties = connectProperties;
     }
 
     private class TabButton extends JButton implements ActionListener {
