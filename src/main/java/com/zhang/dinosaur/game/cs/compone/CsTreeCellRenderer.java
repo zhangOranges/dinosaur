@@ -9,8 +9,8 @@ public class CsTreeCellRenderer extends DefaultTreeCellRenderer {
     public CsTreeCellRenderer() {
     }
 
-    public CsTreeCellRenderer(Icon icon) {
-        leafIcon = icon;
+    public CsTreeCellRenderer(Icon leafIcon) {
+        this.leafIcon = leafIcon;
     }
 
     @Override
