@@ -6,9 +6,12 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 
 public class CsTreeCellRenderer extends DefaultTreeCellRenderer {
+    public CsTreeCellRenderer() {
+    }
 
-
-
+    public CsTreeCellRenderer(Icon icon) {
+        leafIcon = icon;
+    }
 
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
@@ -16,7 +19,7 @@ public class CsTreeCellRenderer extends DefaultTreeCellRenderer {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
         //设置 叶子节点也是文件夹图标
         if (leaf && value instanceof DefaultMutableTreeNode) {
-            setIcon(closedIcon);
+            setIcon(leafIcon);
         } else if (expanded) {
             setIcon(openIcon);
         } else {
