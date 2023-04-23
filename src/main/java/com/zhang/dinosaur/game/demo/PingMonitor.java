@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import com.zhang.dinosaur.game.common.ThreadUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -124,12 +125,7 @@ public class PingMonitor extends JPanel implements Runnable {
             double usage = ThreadLocalRandom.current().nextDouble(0, 100);
             addData(usage);
 
-            // sleep for some time before adding the next data point
-            try {
-                Thread.sleep(DELAY);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            ThreadUtils.sleep(DELAY);
         }
     }
 
