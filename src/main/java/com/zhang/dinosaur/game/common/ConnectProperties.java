@@ -32,4 +32,8 @@ public class ConnectProperties{
      *  password
      */
     private String passwd;
+    /**
+     * if key to login save base64 Code
+     */
+    private String base64PublicKey;
 }
