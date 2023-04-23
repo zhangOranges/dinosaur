@@ -1,29 +1,26 @@
 package com.zhang.dinosaur.game.demo;
 
 import java.awt.*;
-import java.text.DecimalFormat;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
+import cn.hutool.core.util.NumberUtil;
+import net.miginfocom.swing.MigLayout;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.ui.HorizontalAlignment;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class PingMonitor extends JPanel implements Runnable {
     private static final long serialVersionUID = 1L;
-    private static final int MAX_DATA_POINTS = 50;
     private static final int DELAY = 1000; // in milliseconds
 
     private JFreeChart chart;
@@ -31,12 +28,12 @@ public class PingMonitor extends JPanel implements Runnable {
     private int dataPointsCount = 0;
 
     public PingMonitor() {
-        super();
-
+        super(new MigLayout("flowx,,wrap","[grow,fill]",""));
+        this.setBorder( BorderFactory.createEmptyBorder(-13,-13,-13,-13) );
         this.dataset = createDataset();
 
         this.chart = ChartFactory.createBarChart(
-                "74ms", // chart title
+                "0ms", // chart title
                 "", // domain axis label
                 "", // range axis label
                 this.dataset, // data
@@ -45,49 +42,24 @@ public class PingMonitor extends JPanel implements Runnable {
                 true,
                 false
         );
-
-
+        TextTitle title = chart.getTitle();
+        title.setHorizontalAlignment(HorizontalAlignment.LEFT);
+        title.setFont(new Font(null, Font.PLAIN, 11));
         // set the colors of the bars
         BarRenderer renderer = (BarRenderer) this.chart.getCategoryPlot().getRenderer();
-        renderer.setSeriesPaint(0, new Color(229, 255, 255)); // 柱子颜色
-        //renderer.setPositiveItemLabelPositionFallback(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12,TextAnchor.BASELINE_LEFT));
-        chart.setBackgroundPaint(Color.WHITE);
-        //chart.setBackgroundPaint(Color.WHITE);
-        // set the range axis to show values from 0 to 100
-        NumberAxis rangeAxis = (NumberAxis) this.chart.getCategoryPlot().getRangeAxis();
-        rangeAxis.setRange(0, 100);
+        renderer.setSeriesPaint(0, new Color(0, 204, 255)); // 柱子颜色
+        //NumberAxis rangeAxis = (NumberAxis) this.chart.getCategoryPlot().getRangeAxis();
+        //rangeAxis.setRange(0, 100);
 
         //设置横坐标隐藏
         CategoryPlot plot = chart.getCategoryPlot();
         CategoryAxis domainAxis = plot.getDomainAxis();
         domainAxis.setVisible(false);
-
-        // 设置标签生成器
-        CategoryItemLabelGenerator generator = new CategoryItemLabelGenerator() {
-            @Override
-            public String generateRowLabel(CategoryDataset dataset, int row) {
-                return null;
-            }
-
-            @Override
-            public String generateColumnLabel(CategoryDataset dataset, int column) {
-                return null;
-            }
-
-            @Override
-            public String generateLabel(CategoryDataset dataset, int row, int column) {
-                // 获取最新一条数据的值
-                double value = dataset.getValue(row, column).doubleValue();
-                DecimalFormat df = new DecimalFormat("#.##");
-                String label = df.format(value);
-                return label;
-            }
-        };
-
+        plot.setBackgroundPaint(Color.WHITE);
 
         // create the chart panel and add it to this panel
-        ChartPanel chartPanel = new ChartPanel(this.chart);
-        chartPanel.setPreferredSize(new Dimension(500, 300));
+        ChartPanel chartPanel = new ChartPanel(this.chart,true);
+        chartPanel.setPreferredSize(new Dimension(200, 150));
         add(chartPanel);
     }
 
@@ -110,11 +82,7 @@ public class PingMonitor extends JPanel implements Runnable {
         String columnKey = dataset.getColumnKey(columnCount - 1).toString();
         System.out.println(columnCount);
         dataset.setValue(usage, "CPU Usage", Integer.parseInt(columnKey) + 1+"");
-//        this.dataPointsCount++;
-//        if (this.dataPointsCount > MAX_DATA_POINTS) {
-//            dataset.clear();
-//            this.dataPointsCount = 0;
-//        }
+        this.chart.setTitle(NumberUtil.decimalFormat("#.##",usage)+"ms");
     }
 
     @Override
@@ -123,7 +91,6 @@ public class PingMonitor extends JPanel implements Runnable {
             // simulate CPU usage
             double usage = ThreadLocalRandom.current().nextDouble(0, 100);
             addData(usage);
-
             // sleep for some time before adding the next data point
             try {
                 Thread.sleep(DELAY);
