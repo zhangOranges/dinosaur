@@ -54,8 +54,12 @@ public class PingMonitor extends JPanel implements Runnable {
         //设置横坐标隐藏
         CategoryPlot plot = chart.getCategoryPlot();
         CategoryAxis domainAxis = plot.getDomainAxis();
-        domainAxis.setVisible(false);
+        //不显示x轴刻度
+        domainAxis.setTickMarksVisible(false);
+        //不显示x轴刻度标签
+        domainAxis.setTickLabelsVisible(false);
         plot.setBackgroundPaint(Color.WHITE);
+        plot.setOutlineVisible(false);
 
         // create the chart panel and add it to this panel
         ChartPanel chartPanel = new ChartPanel(this.chart,true);
@@ -66,8 +70,8 @@ public class PingMonitor extends JPanel implements Runnable {
     private CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < 100; i++) {
-            dataset.addValue(ThreadLocalRandom.current().nextDouble(0, 100),
-                    "CPU Usage", i+"");
+            dataset.addValue(0,
+                    "Ping", i+"");
         }
 
         return dataset;
@@ -77,11 +81,11 @@ public class PingMonitor extends JPanel implements Runnable {
         CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
         DefaultCategoryDataset dataset = (DefaultCategoryDataset) plot.getDataset();
         String firstColumn = dataset.getColumnKey(0).toString();
-        dataset.removeValue("CPU Usage",firstColumn);
+        dataset.removeValue("Ping",firstColumn);
         int columnCount = dataset.getColumnCount();
         String columnKey = dataset.getColumnKey(columnCount - 1).toString();
         System.out.println(columnCount);
-        dataset.setValue(usage, "CPU Usage", Integer.parseInt(columnKey) + 1+"");
+        dataset.setValue(usage, "Ping", Integer.parseInt(columnKey) + 1+"");
         this.chart.setTitle(NumberUtil.decimalFormat("#.##",usage)+"ms");
     }
 
@@ -103,7 +107,7 @@ public class PingMonitor extends JPanel implements Runnable {
     public static void main(String[] args) {
         PingMonitor pingMonitor = new PingMonitor();
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("CPUMonitor");
+            JFrame frame = new JFrame("PingMonitor");
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame.setContentPane(pingMonitor);
             frame.pack();
