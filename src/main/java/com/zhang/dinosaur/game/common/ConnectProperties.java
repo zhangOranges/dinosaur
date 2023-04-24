@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+/**
+ * real connect properties
+ */
 @Data
 @Accessors(chain = true)
 @ToString

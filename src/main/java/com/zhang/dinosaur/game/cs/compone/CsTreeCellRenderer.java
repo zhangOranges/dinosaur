@@ -8,7 +8,7 @@ import java.awt.*;
 public class CsTreeCellRenderer extends DefaultTreeCellRenderer {
     public CsTreeCellRenderer() {
     }
-
+    private Icon leafIcon;
     public CsTreeCellRenderer(Icon leafIcon) {
         this.leafIcon = leafIcon;
     }
@@ -26,6 +26,7 @@ public class CsTreeCellRenderer extends DefaultTreeCellRenderer {
             setIcon(closedIcon);
         }
 
+        setBackgroundSelectionColor(new Color(0,0,0,100));
         return this;
     }
 }
