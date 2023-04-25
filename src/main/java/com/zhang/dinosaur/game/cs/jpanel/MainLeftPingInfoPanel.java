@@ -1,16 +1,24 @@
-package com.zhang.dinosaur.game.demo;
+package com.zhang.dinosaur.game.cs.jpanel;
 
-import java.awt.*;
-import java.util.concurrent.ThreadLocalRandom;
+/* @program: dinosaur
+ * @description: 左侧面板--ping值监控
+ * @author: csy
+ * @date: 2023-04-23 15:41
+ **/
 
-import javax.swing.*;
-
+import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.NumberUtil;
+import com.google.common.eventbus.Subscribe;
+import com.zhang.dinosaur.game.bus.GContextEventBus;
+import com.zhang.dinosaur.game.common.ThreadUtils;
+import com.zhang.dinosaur.game.cs.event.LoadingPingInfoEvent;
+import com.zhang.dinosaur.game.cs.listener.ConnectionSucceedEventListener;
 import net.miginfocom.swing.MigLayout;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -19,16 +27,17 @@ import org.jfree.chart.ui.HorizontalAlignment;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class PingMonitor extends JPanel implements Runnable {
-    private static final long serialVersionUID = 1L;
-    private static final int DELAY = 1000; // in milliseconds
+import javax.swing.*;
+import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
+public class MainLeftPingInfoPanel extends JPanel implements ConnectionSucceedEventListener<LoadingPingInfoEvent> {
     private JFreeChart chart;
     private CategoryDataset dataset;
-    private int dataPointsCount = 0;
 
-    public PingMonitor() {
+    public MainLeftPingInfoPanel() {
         super(new MigLayout("flowx,,wrap","[grow,fill]",""));
+        //设置内边距
         this.setBorder( BorderFactory.createEmptyBorder(-13,-13,-13,-13) );
         this.dataset = createDataset();
 
@@ -48,8 +57,10 @@ public class PingMonitor extends JPanel implements Runnable {
         // set the colors of the bars
         BarRenderer renderer = (BarRenderer) this.chart.getCategoryPlot().getRenderer();
         renderer.setSeriesPaint(0, new Color(0, 204, 255)); // 柱子颜色
-        //NumberAxis rangeAxis = (NumberAxis) this.chart.getCategoryPlot().getRangeAxis();
-        //rangeAxis.setRange(0, 100);
+        chart.setBackgroundPaint(new Color(242,242,242));
+        // set the range axis to show values from 0 to 100
+        NumberAxis rangeAxis = (NumberAxis) this.chart.getCategoryPlot().getRangeAxis();
+        rangeAxis.setRange(0, 100);
 
         //设置横坐标隐藏
         CategoryPlot plot = chart.getCategoryPlot();
@@ -58,22 +69,25 @@ public class PingMonitor extends JPanel implements Runnable {
         domainAxis.setTickMarksVisible(false);
         //不显示x轴刻度标签
         domainAxis.setTickLabelsVisible(false);
-        plot.setBackgroundPaint(Color.WHITE);
+        //设置数据区背景颜色
+        plot.setBackgroundPaint(new Color(242,242,242));
+        //不显示数据区域边框
         plot.setOutlineVisible(false);
 
         // create the chart panel and add it to this panel
-        ChartPanel chartPanel = new ChartPanel(this.chart,true);
+        ChartPanel chartPanel = new ChartPanel(this.chart);
         chartPanel.setPreferredSize(new Dimension(200, 150));
         add(chartPanel);
+
+        //注册监听器,监听指定事件
+        GContextEventBus.register(this);
     }
 
     private CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < 100; i++) {
-            dataset.addValue(0,
-                    "Ping", i+"");
+            dataset.addValue(0, "Ping", i+"");
         }
-
         return dataset;
     }
 
@@ -84,36 +98,22 @@ public class PingMonitor extends JPanel implements Runnable {
         dataset.removeValue("Ping",firstColumn);
         int columnCount = dataset.getColumnCount();
         String columnKey = dataset.getColumnKey(columnCount - 1).toString();
-        System.out.println(columnCount);
         dataset.setValue(usage, "Ping", Integer.parseInt(columnKey) + 1+"");
         this.chart.setTitle(NumberUtil.decimalFormat("#.##",usage)+"ms");
     }
 
     @Override
-    public void run() {
-        while (true) {
-            // simulate CPU usage
-            double usage = ThreadLocalRandom.current().nextDouble(0, 100);
-            addData(usage);
-            // sleep for some time before adding the next data point
-            try {
-                Thread.sleep(DELAY);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    @Subscribe
+    public void action(LoadingPingInfoEvent o) {
+        //测试ping值滚动
+        ThreadUtil.execAsync(()->{
+            while (true) {
+                // simulate CPU usage
+                double usage = ThreadLocalRandom.current().nextDouble(0, 100);
+                addData(usage);
+                // sleep for some time before adding the next data point
+                ThreadUtils.sleep(1000);
             }
-        }
-    }
-
-    public static void main(String[] args) {
-        PingMonitor pingMonitor = new PingMonitor();
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("PingMonitor");
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.setContentPane(pingMonitor);
-            frame.pack();
-            frame.setVisible(true);
         });
-
-        new Thread(pingMonitor).start();
     }
 }
