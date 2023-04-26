@@ -77,6 +77,7 @@ public class MainFrame extends JFrame {
             JSplitPane splitPane = new CsJSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, mainLeftPanel, mainRightPanel);
             //调整左侧宽度
             splitPane.setDividerLocation(250);
+            splitPane.setResizeWeight(0.15);
             contentPanel.add(splitPane);
         }
 
