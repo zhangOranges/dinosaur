@@ -39,6 +39,11 @@ public class MainFrame extends JFrame {
      */
     private final MainLeftServeInfoPanel serverInfoPanel = new MainLeftServeInfoPanel();
 
+    /**
+     * 左侧--ping值监控信息
+     */
+    private final MainLeftPingInfoPanel pingInfoPanel = new MainLeftPingInfoPanel();
+
     public MainFrame(){
         super("MainFrame view");
         {
@@ -58,6 +63,8 @@ public class MainFrame extends JFrame {
             mainLeftPanel.add(serverInfoPanel.getSystemConstantPanel());
             //具体系统信息
             mainLeftPanel.add(serverInfoPanel);
+            //添加ping值监控信息
+            mainLeftPanel.add(pingInfoPanel);
         }
 
         {
@@ -68,6 +75,8 @@ public class MainFrame extends JFrame {
         {
             //左右panel放入   tabbedPane  再放入contentPanel
             JSplitPane splitPane = new CsJSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, mainLeftPanel, mainRightPanel);
+            //调整左侧宽度
+            splitPane.setDividerLocation(250);
             contentPanel.add(splitPane);
         }
 

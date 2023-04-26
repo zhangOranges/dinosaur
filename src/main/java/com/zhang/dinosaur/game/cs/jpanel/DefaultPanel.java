@@ -7,6 +7,7 @@ import com.zhang.dinosaur.game.cs.button.RemovableButtonTabComponent;
 import com.zhang.dinosaur.game.cs.compone.InputTextArea;
 import com.zhang.dinosaur.game.cs.compone.ShowTextArea;
 import com.zhang.dinosaur.game.cs.event.LoadingIpEvent;
+import com.zhang.dinosaur.game.cs.event.LoadingPingInfoEvent;
 import com.zhang.dinosaur.game.cs.event.RTPChangeSelectTabDefaultPanelEvent;
 import com.zhang.dinosaur.game.cs.event.ShowTextAddContentEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -75,6 +76,8 @@ public class DefaultPanel extends JPanel {
 
                 ConnectProperties connectProperties = new ConnectProperties().setAlias(valueAt +"");
                 GContextEventBus.post(new RTPChangeSelectTabDefaultPanelEvent(title,connectProperties));
+                //测试ping值滚动
+                GContextEventBus.post(new LoadingPingInfoEvent());
             }
         });
 
