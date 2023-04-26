@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class ShowConnectListJFrame extends JFrame implements ShowConnectListJFrameListener {
     public ShowConnectListJFrame() throws HeadlessException {
-        super();
+        super("连接管理器");
         JPanel connectPanel = new JPanel(new MigLayout("insets 0 0 0 0,wrap","grow,fill","[grow 3,fill]0[grow 97,fill]"));
 
         connectPanel.add(new ConnectToolButtonPanel());
