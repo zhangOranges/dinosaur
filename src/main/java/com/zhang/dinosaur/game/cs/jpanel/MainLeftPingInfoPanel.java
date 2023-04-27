@@ -38,7 +38,7 @@ public class MainLeftPingInfoPanel extends JPanel implements ConnectionSucceedEv
     public MainLeftPingInfoPanel() {
         super(new MigLayout("flowx,,wrap","[grow,fill]",""));
         //设置内边距
-        this.setBorder( BorderFactory.createEmptyBorder(-13,-13,-13,-13) );
+        this.setBorder( BorderFactory.createEmptyBorder(-10,-13,-10,-13) );
         this.dataset = createDataset();
 
         this.chart = ChartFactory.createBarChart(
