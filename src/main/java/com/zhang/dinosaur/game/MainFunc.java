@@ -22,9 +22,7 @@ public class MainFunc {
 
         //加载配置相关
         LoadingFrame loadingFrame = new LoadingFrame();
-        SwingUtilities.invokeAndWait(()->{
-            loadingFrame.loading();
-        });
+        SwingUtilities.invokeAndWait(loadingFrame::loading);
         SwingUtilities.invokeLater(()->{
 
             //加载主界面
