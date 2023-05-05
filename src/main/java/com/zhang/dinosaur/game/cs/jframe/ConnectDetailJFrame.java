@@ -39,8 +39,8 @@ public class ConnectDetailJFrame extends JFrame {
                     JPanel sshPanel = new SSHJPanel();
                     top_right.add(sshPanel);
                 }
-                top.add(top_left);
-                top.add(top_right);
+                top.add(top_left,"wmin 100");
+                top.add(top_right,"wmin 500");
             }
             JPanel bottom = new JPanel(new MigLayout("right,center"));
             initBottom(bottom);
@@ -80,6 +80,8 @@ public class ConnectDetailJFrame extends JFrame {
         root.add(tunnel);
         JTree jTree = new JTree(root);
         jTree.getSelectionModel().setSelectionMode(SINGLE_TREE_SELECTION);
+        //默认选中root
+        jTree.setSelectionRow(0);
         jTree.addTreeSelectionListener(e->{
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) jTree.getLastSelectedPathComponent();
             String name = (String) node.getUserObject();
