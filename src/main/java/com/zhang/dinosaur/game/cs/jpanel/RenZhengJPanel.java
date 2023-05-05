@@ -8,14 +8,14 @@ import java.awt.event.ActionListener;
 
 public class RenZhengJPanel extends JPanel {
 
-    private JLabel siyaoLable = new JLabel("私钥");
-    private JTextField siyao = new JTextField();
-    private JButton lookup = new JButton("浏览");
+    private final JLabel siyaoLable = new JLabel("私钥");
+    private final JTextField siyao = new JTextField();
+    private final JButton lookup = new JButton("浏览");
 
-    private JLabel passwordLabel = new JLabel("密码");
-    private JPasswordField passwordField = new JPasswordField();
-    private String[] methodStr = {"密码", "公钥"};
-
+    private final JLabel passwordLabel = new JLabel("密码");
+    private final JPasswordField passwordField = new JPasswordField();
+    private final String[] methodStr = {"密码", "公钥"};
+    private final JComboBox methodList = new JComboBox(methodStr);
     private boolean state = false;
 
     public RenZhengJPanel() {
@@ -28,7 +28,6 @@ public class RenZhengJPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("认证"));
 
 
-        JComboBox methodList = new JComboBox(methodStr);
         methodList.addActionListener(getJCActionListener());
         JLabel name = new JLabel("方法");
 
@@ -57,20 +56,16 @@ public class RenZhengJPanel extends JPanel {
 
     //监听下拉改变事件
     private ActionListener getJCActionListener() {
-        ActionListener ac = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JComboBox source = (JComboBox) e.getSource();
-                String selectedItem = (String) source.getSelectedItem();
-                if (methodStr[1].equals(selectedItem)) {
-                    changeEditable();
-                } else {
-                    changeEditable();
-                }
+
+        return e -> {
+            JComboBox source = (JComboBox) e.getSource();
+            String selectedItem = (String) source.getSelectedItem();
+            if (methodStr[1].equals(selectedItem)) {
+                changeEditable();
+            } else {
+                changeEditable();
             }
         };
-
-        return ac;
     }
 
     //改变文本框是否可编辑
