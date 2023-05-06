@@ -9,11 +9,11 @@ public enum TreeNodeEm {
     ssh("SSH连接",
             new SSHJPanel())
     ,zd("终端",
-            new JPanel())
+            new NoJPanel())
     ,dl("代理",
-            new JPanel())
+            new NoJPanel())
     ,sd("隧道",
-            new JPanel())
+            new NoJPanel())
     ;
     ;
     private String name;
