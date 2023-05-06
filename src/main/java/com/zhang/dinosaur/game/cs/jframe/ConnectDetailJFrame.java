@@ -1,7 +1,13 @@
 package com.zhang.dinosaur.game.cs.jframe;
 
+import com.zhang.dinosaur.game.bus.GContextEventBus;
 import com.zhang.dinosaur.game.common.ConnectProperties;
 import com.zhang.dinosaur.game.cs.button.CsJButton;
+import com.zhang.dinosaur.game.cs.event.ChangePanelEvent;
+import com.zhang.dinosaur.game.cs.jpanel.ConnectDetailJFrameEm.TreeNodeEm;
+import com.zhang.dinosaur.game.cs.jpanel.ConnectJPanel;
+import com.zhang.dinosaur.game.cs.jpanel.ConnectTopLeftJPanel;
+import com.zhang.dinosaur.game.cs.jpanel.ConnectTopRightJPanel;
 import com.zhang.dinosaur.game.cs.jpanel.SSHJPanel;
 import net.miginfocom.swing.MigLayout;
 
@@ -22,18 +28,18 @@ public class ConnectDetailJFrame extends JFrame {
             }
         }
         setTitle(title);
-        JPanel connectPanel = new JPanel(new MigLayout("insets 0,wrap","grow,fill","[grow 99,fill]0[grow 1,fill]"));
+        JPanel connectPanel = new ConnectJPanel();
         {
             //three part
             JPanel top = new JPanel(new MigLayout("insets 1","[grow 25,fill]0[grow 75,fill]","grow,fill"));
             {
-                JPanel top_left = new JPanel(new MigLayout("","grow,fill","grow,fill"));
+                JPanel top_left = new ConnectTopLeftJPanel();
                 {
                     //left component
                     JTree jTree = initTree();
                     top_left.add(jTree);
                 }
-                JPanel top_right = new JPanel(new MigLayout("","grow,fill","grow,fill"));
+                JPanel top_right = new ConnectTopRightJPanel();
                 {
                     //ssh panel
                     JPanel sshPanel = new SSHJPanel();
@@ -71,10 +77,10 @@ public class ConnectDetailJFrame extends JFrame {
      * init tree
      */
     private JTree initTree() {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("SSH连接");
-        DefaultMutableTreeNode terminal = new DefaultMutableTreeNode("终端");
-        DefaultMutableTreeNode proxy = new DefaultMutableTreeNode("代理");
-        DefaultMutableTreeNode tunnel = new DefaultMutableTreeNode("隧道");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(TreeNodeEm.ssh.getName());
+        DefaultMutableTreeNode terminal = new DefaultMutableTreeNode(TreeNodeEm.zd.getName());
+        DefaultMutableTreeNode proxy = new DefaultMutableTreeNode(TreeNodeEm.dl.getName());
+        DefaultMutableTreeNode tunnel = new DefaultMutableTreeNode(TreeNodeEm.sd.getName());
         root.add(terminal);
         root.add(proxy);
         root.add(tunnel);
@@ -85,15 +91,8 @@ public class ConnectDetailJFrame extends JFrame {
         jTree.addTreeSelectionListener(e->{
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) jTree.getLastSelectedPathComponent();
             String name = (String) node.getUserObject();
-            if ("SSH连接".equals(name)){
-
-            }else if ("终端".equals(name)){
-
-            }else if ("代理".equals(name)){
-
-            }else if ("隧道".equals(name)){
-
-            }
+            //通知改变panel
+            GContextEventBus.post(new ChangePanelEvent(name));
         });
         return jTree;
     }
