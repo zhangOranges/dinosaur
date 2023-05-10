@@ -71,8 +71,23 @@ public class ConnectDetailJFrame extends JFrame {
         bottom.add(ok,"wmin 40");
         bottom.add(apply,"wmin 40");
         bottom.add(cancel,"wmin 40");
+
+        //初始化按钮事件 todo 事件未填充
+        initButtonAction(ok,()->{});
+        initButtonAction(apply,()->{});
+        initButtonAction(cancel,()->{});
+
     }
 
+    public void initButtonAction(JButton button,Runnable runnable){
+        button.addActionListener(e -> {
+            clickButtonAfter(runnable);
+        });
+    }
+    public void clickButtonAfter(Runnable runnable){
+        runnable.run();
+        this.dispose();
+    }
     /**
      * init tree
      */

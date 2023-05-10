@@ -5,6 +5,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+import static javax.swing.JFileChooser.FILES_ONLY;
 
 public class RenZhengJPanel extends JPanel {
 
@@ -52,6 +55,14 @@ public class RenZhengJPanel extends JPanel {
         lookup.setEnabled(state);
         add(lookup);
 
+        lookup.addActionListener(e->{
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(FILES_ONLY);
+            fileChooser.showOpenDialog(null);
+            File selectedFile = fileChooser.getSelectedFile();
+            String fileAbsolutePath = selectedFile.getAbsolutePath();
+            //todo 使用文件做后续的操作
+        });
     }
 
     //监听下拉改变事件
