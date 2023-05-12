@@ -6,6 +6,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 
 public class SSHJPanel extends JPanel {
+    /**
+     * 创建ssh面板
+     */
     public SSHJPanel() {
         super(new MigLayout("wrap","grow,fill","grow,fill"));
         {
