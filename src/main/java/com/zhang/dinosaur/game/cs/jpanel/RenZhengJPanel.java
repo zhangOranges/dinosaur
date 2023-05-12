@@ -20,7 +20,9 @@ public class RenZhengJPanel extends JPanel {
     private final String[] methodStr = {"密码", "公钥"};
     private final JComboBox methodList = new JComboBox(methodStr);
     private boolean state = false;
-
+    /**
+     * 认证 布局
+     */
     public RenZhengJPanel() {
 
         super(new MigLayout("left,insets 20 30 0 0"));

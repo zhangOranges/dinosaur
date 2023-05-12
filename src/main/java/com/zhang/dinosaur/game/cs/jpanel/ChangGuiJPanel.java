@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ChangGuiJPanel extends JPanel {
+    /**
+     * 常规 布局
+     */
     public ChangGuiJPanel() {
         super(new MigLayout("left,insets 20 30 0 0"));
         //文本框的最小宽度

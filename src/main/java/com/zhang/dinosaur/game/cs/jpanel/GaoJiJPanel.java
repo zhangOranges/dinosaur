@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GaoJiJPanel extends JPanel {
+    /**
+     * 高级 布局
+     */
     public GaoJiJPanel() {
         super(new MigLayout("left,insets 20 30 0 0"));
         setBorder(BorderFactory.createTitledBorder("高级"));
