@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
 import javax.swing.*;
 
 /**
- * 主启动类
+ * 主启动类 dev_cp
  */
 public class MainFunc {
     @SneakyThrows
